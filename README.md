@@ -1,5 +1,3 @@
-# Book(ish)
-
-Model answer to the Book(ish) challenge in Java
+# Bookish
 
 Copyright © 2018 Softwire - All Rights Reserved
