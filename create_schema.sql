@@ -18,7 +18,7 @@ CREATE TABLE books_taken_out (
     transaction_id int AUTO_INCREMENT,
     book_id int,
     member_id int,
-    date_due date,
+    date_due dateDue,
     PRIMARY KEY (transaction_id),
     FOREIGN KEY (book_id) REFERENCES library_books(book_id),
     FOREIGN KEY (member_id) REFERENCES library_members(member_id)

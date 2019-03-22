@@ -1,9 +1,14 @@
 package org.softwire.training.bookish;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.BooksTakenOut;
+import org.softwire.training.bookish.models.database.Member;
 
 import java.sql.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -57,10 +62,60 @@ public class Main {
                     .mapToBean(Book.class)
                     .list());
         for (Book book : listOfBooks) {
-            System.out.println(book.getTitle());
+            System.out.print("Book ID: " + book.getBookId()+ ", ");
+            System.out.println("Book Title: " + book.getTitle());
         }
 
+//        List<BooksTakenOut> listOfBooksTakenOut = jdbi.withHandle(handle ->
+//                handle.createQuery("SELECT books_taken_out.transaction_id t_transaction_id, " +
+//                        "                       library_members.member_id m_member_id," +
+//                        "                       library_members.forename m_forename, " +
+//                        "                       library_members.surname m_surname," +
+//                        "                       books_taken_out.book_id t_book_id," +
+//                        "                       books_taken_out.date_due t_date_due" +
+//                        "                FROM bookish.books_taken_out " +
+//                        "                INNER JOIN bookish.library_members " +
+//                        "                ON books_taken_out.member_id = library_members.member_id " +
+//                        "                ORDER BY date_due ASC")
+//                .registerRowMapper(BeanMapper.factory(Member.class, "m"))
+//                .registerRowMapper(BeanMapper.factory(BooksTakenOut.class, "t"))
+//                .reduceRows(new LinkedList<>(), (list, rowView) -> {
+//                    BooksTakenOut booksTakenOut = rowView.getRow(BooksTakenOut.class);
+//                    booksTakenOut.setMember(rowView.getRow(Member.class));
+//                    list.add(booksTakenOut);
+//                    return list;
+//                })
+//        );
+//        for (BooksTakenOut transaction : listOfBooksTakenOut) {
+//            System.out.println();
+//            System.out.print("Transaction ID: " + transaction.getTransactionId() + ", ");
+//            System.out.print("Member: " + transaction.getMember().getForename() + " " + transaction.getMember().getSurname() + ", ");
+//            System.out.println("Book ID: " +transaction.getBookId() + ", ");
+//            System.out.println("Date due back: " + transaction.getDateDue());
+//        }
 
+        List<BooksTakenOut> listOfBooksTakenOutV2 = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT books_taken_out.transaction_id transaction_id, " +
+                        "                       library_members.forename member_forename, " +
+                        "                       library_members.surname member_surname, " +
+                        "                       library_books.title book_title, " +
+                        "                       books_taken_out.date_due date_due" +
+                        "                FROM bookish.books_taken_out " +
+                        "                INNER JOIN bookish.library_members " +
+                        "                ON books_taken_out.member_id = library_members.member_id " +
+                        "                INNER JOIN bookish.library_books " +
+                        "                ON books_taken_out.book_id = library_books.book_id" +
+                        "                ORDER BY date_due ASC")
+                .mapToBean(BooksTakenOut.class)
+                .list()
+        );
 
+        for (BooksTakenOut transaction : listOfBooksTakenOutV2) {
+            System.out.println();
+            System.out.print("Transaction ID: " + transaction.getTransactionId() + ", ");
+            System.out.print("Member: " + transaction.getMember().getForename() + " " + transaction.getMember().getSurname() + ", ");
+            System.out.println("Book: " + transaction.getBook().getTitle() + ", ");
+            System.out.println("Date due back: " + transaction.getDateDue());
+        }
     }
 }
