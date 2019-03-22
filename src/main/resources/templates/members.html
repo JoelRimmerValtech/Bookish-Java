@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Staff - Overview</title>
+    <title>Staff - Members</title>
 
     <link rel="stylesheet" href="/styles/general.css"/>
     <link rel="stylesheet" href="/styles/navbar.css"/>
@@ -15,10 +15,11 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
-    <h1>Staff Library Management System</h1>
-    <a href="/members">members management</a>
-    <a href="/checkin">Check In/Out Books</a>
-    <a href="/books">Manage Books</a>
+    <h1>Members List</h1>
+
+    <div th:each="member : %{members.memberList}">
+        <span th:text="${member.surname}"></span>
+    </div>
 
 </div>
 
