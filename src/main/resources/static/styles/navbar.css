@@ -5,16 +5,21 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    justify-content: flex-end;
 
-    background-color: #343a40;
-    padding: 15px 0;
+    background-color: white;
+    padding: 15px 100px;
+}
+
+.navbar-container {
+    width: 100%
 }
 
 .navbar-title {
     margin: 0 5px 0 20px;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Goudy Bookletter 1911', serif;
     font-size: 30px;
-    color: lightgray;
+    color: grey;
 }
 .navbar-title:hover {
     color: white;
@@ -28,7 +33,7 @@ nav {
 
 .navbar-item {
     margin-left: 20px;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Goudy Bookletter 1911', serif;
     font-size: 20px;
     color: grey;
 }
@@ -37,7 +42,55 @@ nav {
 }
 
 .navbar-item a {
-    color: unset;
+    color: grey;
     text-decoration: none;
 }
 
+
+body {
+  text-align: right;
+    font-family: 'Goudy Bookletter 1911', serif;
+}
+
+.navbar-title a h1 {
+  font-size: 6rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem;
+  text-transform: uppercase;
+
+  animation: background-move 10s infinite;
+
+   background: url(https://avatars.mds.yandex.net/get-pdb/38069/a644d9e0-d9af-4423-ac1e-42f2aed83ba5/s1200);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+@keyframes background-move {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  25% {
+    background-position: 50% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 50% 50%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
