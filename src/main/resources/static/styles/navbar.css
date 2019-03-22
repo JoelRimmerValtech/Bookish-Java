@@ -5,16 +5,21 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    justify-content: flex-end;
 
-    background-color: #343a40;
-    padding: 15px 0;
+    background-color: white;
+    padding: 15px 100px;
+}
+
+.navbar-container {
+    width: 100%
 }
 
 .navbar-title {
     margin: 0 5px 0 20px;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Goudy Bookletter 1911', serif;
     font-size: 30px;
-    color: lightgray;
+    color: grey;
 }
 .navbar-title:hover {
     color: white;
@@ -28,7 +33,7 @@ nav {
 
 .navbar-item {
     margin-left: 20px;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Goudy Bookletter 1911', serif;
     font-size: 20px;
     color: grey;
 }
@@ -37,21 +42,21 @@ nav {
 }
 
 .navbar-item a {
-    color: unset;
+    color: grey;
     text-decoration: none;
 }
 
 
 body {
-  text-align: center;
-  font-family: 'Open Sans';
+  text-align: right;
+    font-family: 'Goudy Bookletter 1911', serif;
 }
 
 .navbar-title a h1 {
-  font-size: 4rem;
-  font-weight: 900;
+  font-size: 6rem;
+  font-weight: 700;
   text-align: center;
-  margin: 4rem;
+  margin: 1rem;
   text-transform: uppercase;
 
   animation: background-move 10s infinite;
