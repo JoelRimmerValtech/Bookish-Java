@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!--@thymesVar id="members" type="org.softwire.training.bookish.models.page.StaffPageMemberModel"-->
 
 <head>
     <title>Staff - Members</title>
@@ -17,8 +18,8 @@
 <div class="container">
     <h1>Members List</h1>
 
-    <div th:each="member : %{members.memberList}">
-        <span th:text="${member.surname}"></span>
+    <div th:each="member : ${members.memberList}">
+        <p> <span th:text="${member.surname}"></span></p>
     </div>
 
 </div>
