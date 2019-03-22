@@ -46,7 +46,8 @@ body {
   text-align: center;
   font-family: 'Open Sans';
 }
-h1 {
+
+.navbar-title a h1 {
   font-size: 4rem;
   font-weight: 900;
   text-align: center;
@@ -55,7 +56,7 @@ h1 {
 
   animation: background-move 10s infinite;
 
-   background: url(https://blog.spoongraphics.co.uk/wp-content/uploads/2012/retro-pattern/triangle-pattern.jpg);
+   background: url(https://avatars.mds.yandex.net/get-pdb/38069/a644d9e0-d9af-4423-ac1e-42f2aed83ba5/s1200);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
 }
@@ -66,15 +67,15 @@ h1 {
   }
 
   25% {
-    background-position: 5% 10%;
+    background-position: 50% 50%;
   }
 
   50% {
-    background-position: 15% 15%;
+    background-position: 100% 100%;
   }
 
   75% {
-    background-position: 10% 5%;
+    background-position: 50% 50%;
   }
 
   100% {
