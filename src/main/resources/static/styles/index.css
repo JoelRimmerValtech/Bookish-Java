@@ -21,28 +21,3 @@
     font-family: "Segoe UI", sans-serif;
     margin: 15px 0 0 0;
 }
-
-@-webkit-keyframes scroll {
-  from {
-    top: 0px;
-  }
-  50% {
-    top: -320px;
-  }
-  to {
-    top: -640px;
-  }
-}
-
-div {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background-repeat: repeat-y;
-}
-
-div#back {
-  -webkit-animation: scroll 15s infinite linear;
-  background-image: url(https://us-east.manta.joyent.com/condenast/public/cnt-services/production/2016/01/04/568ae16e67dc82253d9f72d1_Stockholm-Public-Library-Alamy.jpg);
-}
