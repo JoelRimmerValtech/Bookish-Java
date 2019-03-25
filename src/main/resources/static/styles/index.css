@@ -195,7 +195,6 @@ a.button:hover, a.button:focus {
 .book-item p:not(.author) {
   display: block;
   display: -webkit-box;
-  height: 63px;
   /* Fallback for non-webkit */
   font-size: 15px;
   line-height: 1.4;
@@ -334,7 +333,6 @@ a.button:hover, a.button:focus {
 }
 .bk-img .bk-front > div,
 .bk-img .bk-left {
-  background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-750-561.jpg);
 }
 
 /*
@@ -542,4 +540,9 @@ a.button:hover, a.button:focus {
 
 .overlay-details {
   display: none;
+}
+
+.sortoptionscontainer {
+  display: flex;
+  justify-content: flex-end;
 }
