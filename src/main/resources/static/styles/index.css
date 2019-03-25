@@ -546,3 +546,15 @@ a.button:hover, a.button:focus {
   display: flex;
   justify-content: flex-end;
 }
+
+.mapheader {
+  text-align: center;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 70px;
+  background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 38%;
+  color: white;
+}
+
