@@ -5,8 +5,11 @@ import org.softwire.training.bookish.models.page.StaffPageMemberModel;
 import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -27,11 +30,25 @@ public class StaffController {
     }
 
     @RequestMapping("/members")
-    ModelAndView editMembers() {
+    ModelAndView members() {
         List<Member> memberList = memberService.getMembers();
         StaffPageMemberModel staffPageMemberModel = new StaffPageMemberModel();
         staffPageMemberModel.setMemberList(memberList);
         return new ModelAndView("staffMembers", "members", staffPageMemberModel);
+    }
+
+
+    @RequestMapping("/members/add")
+    RedirectView addMembers(@ModelAttribute Member member) {
+//        Member member = new Member();
+//        member.setForename(fname);
+//        member.setSurname(sname);
+//        member.setLibrarian(librarian);
+        memberService.addMember(member);
+        List<Member> memberList = memberService.getMembers();
+        StaffPageMemberModel staffPageMemberModel = new StaffPageMemberModel();
+        staffPageMemberModel.setMemberList(memberList);
+        return new RedirectView("/staff");
     }
 
     @RequestMapping("/books")
