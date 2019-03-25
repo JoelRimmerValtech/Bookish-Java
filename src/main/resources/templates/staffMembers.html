@@ -134,6 +134,8 @@
     </div>
 
 
+    <script src="jquery-3.3.1.min.js"></script>
+
     <script>
         var isEditing = false,
             tempIdValue = 0,
@@ -142,8 +144,7 @@
             tempLibrarianValue = "",
 
             // Handles live/dynamic element events, i.e. for newly created edit buttons
-            $
-        (document).on('click', '.edit', function () {
+            $(document).on('click', '.edit', function () {
             var parentRow = $(this).closest('tr'),
                 tableBody = parentRow.closest('tbody'),
                 tdId = parentRow.children('td.id'),
@@ -152,11 +153,10 @@
                 tdLibr = parentRow.children('td.librarian');
 
             if (isEditing) {
-                var idInput = tableBody.find('input[name="id"]'),
-                    fnameInput = tableBody.find('input[name="fname"]'),
+                var fnameInput = tableBody.find('input[name="fname"]'),
                     snameInput = tableBody.find('input[name="sname"]'),
                     librInput = tableBody.find('input[name="librarian"]'),
-                    tdId = idInput.closest('td'),
+                    tdId = tableBody.find('input[name="id"]').closest('td'),
                     tdFname = fnameInput.closest('td'),
                     tdSname = snameInput.closest('td'),
                     tdLibr = librInput.closest('td'),
@@ -164,12 +164,14 @@
 
                 if ($(this).is(currentEdit)) {
                     // Save new values as static html
-                    var tdNameValue = nameInput.prop('value'),
-                        tdDataValue = dataInput.prop('value');
-                    tdNameInput.empty();
-                    tdDataInput.empty();
-                    tdNameInput.html(tdNameValue);
-                    tdDataInput.html(tdDataValue);
+                    var tdIdValue = tdId.prop('value');
+                        tdFnameValue = fnameInput.prop('value');
+                    fnameInput.empty();
+                    var Http = new XMLHttpRequest();
+                    var url = location.href + '/edit';
+                    Http.open('POST', url);
+                    Http.send(`id=${tdIdValue}&forename=${tdFnameValue}`);
+
                 } else {
                     // Restore previous html values
                     tdNameInput.empty();
@@ -219,6 +221,11 @@
             }
 
             // Remove selected row from table
+            // var Http = new XMLHttpRequest();
+            // var url = location.href + '/edit';
+            // Http.open('POST', url);
+            // Http.send(`id=${tdIdValue}&forename=${tdFnameValue}`);
+
             $(this).closest('tr').remove();
         });
 
