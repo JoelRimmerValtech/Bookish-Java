@@ -21,11 +21,8 @@
             <th>Forename</th>
             <th>Librarian?</th>
         </tr>
-        <tr th:each=""
+        <tr th:each="member : ${members.memberList}"></tr>
     </table>
-        <div th:each="member : ${members.memberList}">
-            <p><span th:text="${member.surname}"></span></p>
-        </div>
 
 </div>
 
