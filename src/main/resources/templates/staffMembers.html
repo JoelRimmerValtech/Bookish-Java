@@ -91,24 +91,28 @@
                 var snameInput = tableBody.find('input[name="sname"]'),
                     fnameInput = tableBody.find('input[name="fname"]'),
                     librInput = tableBody.find('input[name="librarian"]');
-                tdId = parentRow.closest('.id');
-                tdFname = fnameInput.closest('td');
-                tdSname = snameInput.closest('td');
-                tdLibr = librInput.closest('td');
+                tdId = parentRow.children('td.id');
                 currentEdit = tdLibr.parent().find('td.edit');
 
                 if ($(this).is(currentEdit)) {
                     // Save new values as static html
-                    var tdIdValue = tdId.text();
+                    var tdIdValue = parseInt(tdId.text());
                     tdFnameValue = fnameInput.prop('value');
                     tdSnameValue = snameInput.prop('value');
-                    tdLibrValue = librInput.prop('value');
+                    tdLibrValue = librInput.checked();
 
-                    var Http = new XMLHttpRequest();
-                    var url = location.href + '/edit';
-                    Http.open('POST', url);
-                    Http.send(`id=${tdIdValue}&forename=${tdFnameValue}&surname=${tdSnameValue}&librarian=${tdLibrValue}`);
-
+                    $.ajax({
+                        url: '/staff/members/edit',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            memberId: tdIdValue,
+                            forename: tdFnameValue,
+                            surname: tdSnameValue,
+                            librarian: tdLibrValue
+                        }),
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
                 } else {
                     // Restore previous html values
                     // tdNameInput.empty();

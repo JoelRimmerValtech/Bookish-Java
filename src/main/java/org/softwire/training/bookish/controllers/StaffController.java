@@ -5,10 +5,7 @@ import org.softwire.training.bookish.models.page.StaffPageMemberModel;
 import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -53,15 +50,12 @@ public class StaffController {
     }
 
     @RequestMapping("/members/edit")
-    RedirectView editMembers(@ModelAttribute Member member) {
+    RedirectView editMembers(@RequestBody Member member) {
 //        Member member = new Member();
 //        member.setForename(fname);
 //        member.setSurname(sname);
 //        member.setLibrarian(librarian);
         memberService.editMember(member);
-        List<Member> memberList = memberService.getMembers();
-        StaffPageMemberModel staffPageMemberModel = new StaffPageMemberModel();
-        staffPageMemberModel.setMemberList(memberList);
         return new RedirectView("/staff");
     }
 
