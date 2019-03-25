@@ -7,7 +7,10 @@ nav {
     align-items: baseline;
     justify-content: flex-end;
 
-    background-color: white;
+    background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 30%;
     padding: 15px 100px;
 }
 
@@ -34,22 +37,16 @@ nav {
 .navbar-item {
     margin-left: 20px;
     font-family: 'Goudy Bookletter 1911', serif;
-    font-size: 20px;
-    color: grey;
+    font-size: 30px;
 }
-.navbar-item:hover {
-    color: lightgray;
+.navbar-item a:hover {
+    color: white;
+    font-style: italic;
 }
 
 .navbar-item a {
-    color: grey;
+    color: white;
     text-decoration: none;
-}
-
-
-body {
-  text-align: right;
-    font-family: 'Goudy Bookletter 1911', serif;
 }
 
 .navbar-title a h1 {
@@ -61,7 +58,7 @@ body {
 
   animation: background-move 10s infinite;
 
-   background: url(https://avatars.mds.yandex.net/get-pdb/38069/a644d9e0-d9af-4423-ac1e-42f2aed83ba5/s1200);
+    background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-750-561.jpg);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
 }
@@ -86,11 +83,4 @@ body {
   100% {
     background-position: 0% 0%;
   }
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
 }

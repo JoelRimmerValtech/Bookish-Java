@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
 
 
 <head>
     <title>Staff - Overview</title>
-
-    <link rel="stylesheet" href="/styles/general.css"/>
-    <link rel="stylesheet" href="/styles/navbar.css"/>
-    <link rel="stylesheet" href="/styles/staffOverview.css"/>
 </head>
 
 <body>
 
-<div th:replace="fragments/navbar :: navbar"></div>
+<div layout:fragment="main">
 
-<div class="container">
     <h1>Staff Library Management System</h1>
     <a href="/staff/members">members management</a>
-    <a href="/checkin">Check In/Out Books</a>
-    <a href="/books">Manage Books</a>
+    <a href="/staff/checkin">Check In/Out Books</a>
+    <a href="/staff/books">Manage Books</a>
 
 </div>
 

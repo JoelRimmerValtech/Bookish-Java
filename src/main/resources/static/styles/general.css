@@ -19,3 +19,15 @@ body {
     max-width: 800px;
     flex-grow: 1;
 }
+
+.footerdesign {
+    width: 100%;
+    background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 40%;
+    padding: 5px 100px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,24 +1,379 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{master.html}">
 
+<!--@thymesVar id="books" type="org.softwire.training.bookish.models.page.IndexModel"-->
 
-<head layout:fragment="head">
-    <title>Manage Books</title>
+<head>
+    <title>Welcome</title>
 </head>
 
 <body>
 
-<main layout:fragment="main">
+<div layout:fragment="main">
+    <div id="main-container" class="main-container nav-effect-1">
+        <div class="main clearfix">
+            <div class="page-container">
+                <section id="book_list">
+                    <div class="toolbar row">
+                        <!--TODO - Order By... a href with params-->
+                        <div class="small-12 medium-3 columns">
+                            <select class="sort-options" onchange="javascript:handleSelect(this)">
+                                <option value="" disabled selected>Sort by</option>
+                                <option value="author">Author</option>
+                                <option value="alpha">Alphabetical</option>
+                                <option value="date">Published</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <div class="container">
-        <h1>Staff Library Management System</h1>
+                    <div class="grid-shuffle">
+                        <ul id="grid" class="row">
+                            <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6 columns"
+                                data-groups='["classic"]' data-date-created="2018"
+                                data-title="${book.title}" data-color="#fcc278">
+                                <div class="bk-img">
+                                    <div class="bk-wrapper">
+                                        <div class="bk-book bk-bookdefault">
+                                            <div class="bk-front">
+                                                <div class="bk-cover"
+                                                     style="background-image: url('http://via.placeholder.com/150x215.png')"></div>
+                                            </div>
+                                            <div class="bk-back"></div>
+                                            <div class="bk-left"></div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <p class="lead">Welcome to the Bookish application</p>
-        <p class="lead">Find your way around using the links above</p>
+                                <div class="item-details">
+                                    <h3 class="book-item_title" th:text="${book.title}"></h3>
+                                    <p class="author">by <span th:text="${book.author}"></span> &bull; 2019</p>
+                                    <p>Lorem Ipsum went to the shop and said happy birthday to the donkey named Shrek.</p>
+                                    <p><span th:text="${book.copies}"> copies available</span></p>
+                                    <a href="#" class="button">Details</a>
+                                </div>
 
+                                <div class="overlay-details">
+                                    <a href="#" class="close-overlay-btn">Close</a>
+                                    <div class="overlay-image">
+                                        <img src="http://via.placeholder.com/275x400.png" alt="Book Cover">
+                                        <div class="back-color"></div>
+                                    </div>
+                                    <div class="overlay-desc activated">
+                                        <h2 class="overlay_title" th:text="${book.title}"></h2>
+                                        <p class="author">by <span th:text="${book.author}"></span></p>
+                                        <p class="published">2019</p>
+                                        <p class="synopsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Etiam luctus convallis sem. Nunc sed tristique augue. Aenean at nulla vel
+                                            lacus volutpat bibendum vitae ut nibh. Aliquam eu metus et purus rutrum
+                                            malesuada. Aenean in auctor mauris,
+                                            non vulputate libero. Nullam auctor, purus ut cursus convallis, lectus
+                                            tellus dignissim lectus, id tempor ipsum leo ut nulla. Vestibulum vitae elit
+                                            erat.</p>
+                                        <a href="#" class="button preview">Preview</a>
+                                    </div>
+                                    <div class="overlay-preview">
+                                        <a href="#" class="back-preview-btn">Back</a>
+                                        <h4 class="preview-title">Preview</h4>
+                                        <div class="preview-content">
+                                            <h5>Chapter 1</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus
+                                                convallis sem. Nunc sed tristique augue. Aenean at nulla vel lacus
+                                                volutpat bibendum vitae ut nibh. Aliquam eu metus et purus rutrum
+                                                malesuada. Aenean in auctor
+                                                mauris, non vulputate libero. Nullam auctor, purus ut cursus convallis,
+                                                lectus tellus dignissim lectus, id tempor ipsum leo ut nulla. Vestibulum
+                                                vitae elit erat.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus
+                                                convallis sem. Nunc sed tristique augue. Aenean at nulla vel lacus
+                                                volutpat bibendum vitae ut nibh. Aliquam eu metus et purus rutrum
+                                                malesuada. Aenean in auctor
+                                                mauris, non vulputate libero. Nullam auctor, purus ut cursus convallis,
+                                                lectus tellus dignissim lectus, id tempor ipsum leo ut nulla. Vestibulum
+                                                vitae elit erat.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus
+                                                convallis sem. Nunc sed tristique augue. Aenean at nulla vel lacus
+                                                volutpat bibendum vitae ut nibh. Aliquam eu metus et purus rutrum
+                                                malesuada. Aenean in auctor
+                                                mauris, non vulputate libero. Nullam auctor, purus ut cursus convallis,
+                                                lectus tellus dignissim lectus, id tempor ipsum leo ut nulla. Vestibulum
+                                                vitae elit erat.<br>&nbsp;<br>&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
-</main>
+
+    <script type="text/javascript">
+        function reloadWithQueryStringVars (queryStringVars) {
+    var existingQueryVars = location.search ? location.search.substring(1).split("&") : [],
+        currentUrl = location.search ? location.href.replace(location.search,"") : location.href,
+        newQueryVars = {},
+        newUrl = currentUrl + "?";
+    if(existingQueryVars.length > 0) {
+        for (var i = 0; i < existingQueryVars.length; i++) {
+            var pair = existingQueryVars[i].split("=");
+            newQueryVars[pair[0]] = pair[1];
+        }
+    }
+    if(queryStringVars) {
+        for (var queryStringVar in queryStringVars) {
+            newQueryVars[queryStringVar] = queryStringVars[queryStringVar];
+        }
+    }
+    if(newQueryVars) {
+        for (var newQueryVar in newQueryVars) {
+            newUrl += newQueryVar + "=" + newQueryVars[newQueryVar] + "&";
+        }
+        newUrl = newUrl.substring(0, newUrl.length-1);
+        window.location.href = newUrl;
+    } else {
+        window.location.href = location.href;
+    }
+}
+    </script>
+
+    <script>
+        // Get Color Attribute
+// Set the background book color
+$("li.book-item").each(function() {
+  var $this = $(this);
+
+  $this.find(".bk-front > div").css('background-color', $(this).data("color"));
+  $this.find(".bk-left").css('background-color', $(this).data("color"));
+  $this.find(".back-color").css('background-color', $(this).data("color"));
+
+  $this.find(".item-details a.button").on('click', function() {
+    displayBookDetails($this);
+  });
+});
+
+function displayBookDetails(el) {
+  var $this = $(el);
+  $('.main-container').addClass('prevent-scroll');
+  $('.main-overlay').fadeIn();
+
+  $this.find('.overlay-details').clone().prependTo('.main-overlay');
+
+  $('a.close-overlay-btn').on('click', function(e) {
+    e.preventDefault();
+    $('.main-container').removeClass('prevent-scroll');
+    $('.main-overlay').fadeOut();
+    $('.main-overlay').find('.overlay-details').remove();
+  });
+
+  $('.main-overlay a.preview').on('click', function() {
+    $('.main-overlay .overlay-desc').toggleClass('activated');
+    $('.main-overlay .overlay-preview').toggleClass('aactivated');
+  });
+
+  $('.main-overlay a.back-preview-btn').on('click', function() {
+    $('.main-overlay .overlay-desc').toggleClass('activated');
+    $('.main-overlay .overlay-preview').toggleClass('activated');
+  });
+}
+
+/*
+ *  Offcanvas Menu
+ */
+// Open Offcanvas Menu
+$('.main-navigation a').on('click', function() {
+  $('.main-container').addClass('nav-menu-open');
+  $('.main-overlay').fadeIn();
+});
+
+// Close Offcanvas Menu
+$('.overlay-full').on('click', function() {
+  $('.main-container').removeClass('nav-menu-open');
+  $('.main-container').removeClass('prevent-scroll');
+  $(this).parent().fadeOut();
+  $(this).parent().find('.overlay-details').remove();
+});
+
+/*
+ *  Shuffle.js for Search, Catagory filter and Sort
+ */
+
+// Initiate Shuffle.js
+var Shuffle = window.shuffle;
+
+var bookList = function(element) {
+  this.element = element;
+
+  this.shuffle = new Shuffle(element, {
+    itemSelector: '.book-item',
+  });
+
+  this._activeFilters = [];
+  this.addFilterButtons();
+  this.addSorting();
+  this.addSearchFilter();
+  this.mode = 'exclusive';
+};
+
+bookList.prototype.toArray = function(arrayLike) {
+  return Array.prototype.slice.call(arrayLike);
+};
+
+// Catagory Filter Functions
+// Toggle mode for the Catagory filters
+bookList.prototype.toggleMode = function() {
+  if (this.mode === 'additive') {
+    this.mode = 'exclusive';
+  } else {
+    this.mode = 'additive';
+  }
+};
+
+// Filter buttons eventlisteners
+bookList.prototype.addFilterButtons = function() {
+  var options = document.querySelector('.filter-options');
+  if (!options) {
+    return;
+  }
+  var filterButtons = this.toArray(options.children);
+
+  filterButtons.forEach(function(button) {
+    button.addEventListener('click', this._handleFilterClick.bind(this), false);
+  }, this);
+};
+
+// Function for the Catagory Filter
+bookList.prototype._handleFilterClick = function(evt) {
+  var btn = evt.currentTarget;
+  var isActive = btn.classList.contains('active');
+  var btnGroup = btn.getAttribute('data-group');
+
+  if (this.mode === 'additive') {
+    if (isActive) {
+      this._activeFilters.splice(this._activeFilters.indexOf(btnGroup));
+    } else {
+      this._activeFilters.push(btnGroup);
+    }
+
+    btn.classList.toggle('active');
+    this.shuffle.filter(this._activeFilters);
+
+  } else {
+    this._removeActiveClassFromChildren(btn.parentNode);
+
+    var filterGroup;
+    if (isActive) {
+      btn.classList.remove('active');
+      filterGroup = Shuffle.ALL_ITEMS;
+    } else {
+      btn.classList.add('active');
+      filterGroup = btnGroup;
+    }
+
+    this.shuffle.filter(filterGroup);
+  }
+};
+
+// Remove classes for active states
+bookList.prototype._removeActiveClassFromChildren = function(parent) {
+  var children = parent.children;
+  for (var i = children.length - 1; i >= 0; i--) {
+    children[i].classList.remove('active');
+  }
+};
+
+// Sort By
+// Watching for the select box to change to run
+bookList.prototype.addSorting = function() {
+  var menu = document.querySelector('.sort-options');
+  if (!menu) {
+    return;
+  }
+  menu.addEventListener('change', this._handleSortChange.bind(this));
+};
+
+// Sort By function Handler runs on change
+bookList.prototype._handleSortChange = function(evt) {
+  var value = evt.target.value;
+  var options = {};
+
+  function sortByDate(element) {
+    return element.getAttribute('data-created');
+  }
+
+  function sortByTitle(element) {
+    return element.getAttribute('data-title').toLowerCase();
+  }
+
+  if (value === 'date-created') {
+    options = {
+      reverse: true,
+      by: sortByDate,
+    };
+  } else if (value === 'title') {
+    options = {
+      by: sortByTitle,
+    };
+  }
+
+  this.shuffle.sort(options);
+};
+
+// Searching the Data-attribute Title
+// Advanced filtering
+// Waiting for input into the search field
+bookList.prototype.addSearchFilter = function() {
+  var searchInput = document.querySelector('.shuffle-search');
+  if (!searchInput) {
+    return;
+  }
+  searchInput.addEventListener('keyup', this._handleSearchKeyup.bind(this));
+};
+
+// Search function Handler to search list
+bookList.prototype._handleSearchKeyup = function(evt) {
+  var searchInput = document.querySelector('.shuffle-search');
+  var searchText = evt.target.value.toLowerCase();
+
+  // Check if Search input has value to toggle class
+  if (searchInput && searchInput.value) {
+    $('.catalog-search').addClass('input--filled');
+  } else {
+    $('.catalog-search').removeClass('input--filled');
+  }
+
+  this.shuffle.filter(function(element, shuffle) {
+
+    // If there is a current filter applied, ignore elements that don't match it.
+    if (shuffle.group !== Shuffle.ALL_ITEMS) {
+      // Get the item's groups.
+      var groups = JSON.parse(element.getAttribute('data-groups'));
+      var isElementInCurrentGroup = groups.indexOf(shuffle.group) !== -1;
+
+      // Only search elements in the current group
+      if (!isElementInCurrentGroup) {
+        return false;
+      }
+    }
+
+    var titleElement = element.querySelector('.book-item_title');
+    var titleText = titleElement.textContent.toLowerCase().trim();
+
+    return titleText.indexOf(searchText) !== -1;
+  });
+};
+
+// Wait till dom load to start the Shuffle js funtionality
+document.addEventListener('DOMContentLoaded', function() {
+  window.book_list = new bookList(document.getElementById('grid'));
+});
+
+    </script>
+
+</div>
 
 
 </body>
