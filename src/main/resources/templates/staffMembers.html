@@ -65,6 +65,7 @@ table tbody td {
 
 
 
+
     </style>
 </head>
 
@@ -147,57 +148,58 @@ table tbody td {
             tdSname = parentRow.children('td.sname'),
             tdLibr = parentRow.children('td.librarian');
 
-        if(isEditing) {
-            var nameInput = tableBody.find('input[name="name"]'),
-            dataInput = tableBody.find('input[name="data"]'),
-            tdNameInput = nameInput.closest('td'),
-            tdDataInput = dataInput.closest('td'),
-            currentEdit = tdNameInput.parent().find('td.edit');
+            if(isEditing) {
+                var idInput = tableBody.find('input[name="id"]'),
+                fnameInput = tableBody.find('input[name="fname"]'),
+                snameInput = tableBody.find('input[name="sname"]'),
+                librInput = tableBody.find('input[name="librarian"]'),
+                tdId = idInput.closest('td'),
+                tdFname = fnameInput.closest('td'),
+                tdSname = snameInput.closest('td'),
+                tdLibr = librInput.closest('td'),
+                currentEdit = tdLibr.parent().find('td.edit');
 
-      if($(this).is(currentEdit)) {
-         // Save new values as static html
-         var tdNameValue = nameInput.prop('value'),
-             tdDataValue = dataInput.prop('value');
+                if($(this).is(currentEdit)) {
+                    // Save new values as static html
+                    var tdNameValue = nameInput.prop('value'),
+                    tdDataValue = dataInput.prop('value');
+                    tdNameInput.empty();
+                    tdDataInput.empty();
+                    tdNameInput.html(tdNameValue);
+                    tdDataInput.html(tdDataValue);
+                }
+            else {
+                // Restore previous html values
+                tdNameInput.empty();
+                tdDataInput.empty();
 
-         tdNameInput.empty();
-         tdDataInput.empty();
+                tdNameInput.html(tempNameValue);
+                tdDataInput.html(tempDataValue);
+            }
+            // Display static row
+            currentEdit.html('Edit');
+            isEditing = false;
+        } else {
+            // Display editable input row
+            isEditing = true;
+            $(this).html('Save');
 
-         tdNameInput.html(tdNameValue);
-         tdDataInput.html(tdDataValue);
-      }
-      else {
-         // Restore previous html values
-         tdNameInput.empty();
-         tdDataInput.empty();
+            var tdNameValue = tdName.html(),
+            tdDataValue = tdData.html();
 
-         tdNameInput.html(tempNameValue);
-         tdDataInput.html(tempDataValue);
-      }
-      // Display static row
-      currentEdit.html('Edit');
-      isEditing = false;
-   }
-   else {
-      // Display editable input row
-      isEditing = true;
-      $(this).html('Save');
+            // Save current html values for canceling an edit
+            tempNameValue = tdNameValue;
+            tempDataValue = tdDataValue;
 
-      var tdNameValue = tdName.html(),
-          tdDataValue = tdData.html();
+            // Remove existing html values
+            tdName.empty();
+            tdData.empty();
 
-      // Save current html values for canceling an edit
-      tempNameValue = tdNameValue;
-      tempDataValue = tdDataValue;
-
-      // Remove existing html values
-      tdName.empty();
-      tdData.empty();
-
-      // Create input forms
-      tdName.html('<input type="text" name="name" value="' + tdNameValue + '">');
-      tdData.html('<input type="text" name="data" value="' + tdDataValue + '">');
-   }
-});
+            // Create input forms
+            tdName.html('<input type="text" name="name" value="' + tdNameValue + '">');
+            tdData.html('<input type="text" name="data" value="' + tdDataValue + '">');
+        }
+        });
 
 // Handles live/dynamic element events, i.e. for newly created trash buttons
 $(document).on('click', '.trash', function() {
@@ -247,6 +249,7 @@ $('.new-row').on('click', function() {
    isEditing = true;
    tableBody.find('tr:last').before(trNew);
 });
+
 
 
     </script>
