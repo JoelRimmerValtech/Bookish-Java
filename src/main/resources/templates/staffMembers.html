@@ -35,9 +35,6 @@
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>
-        <tr>
-            <td class="new-row" colspan="4">Add New Member</td>
-        </tr>
         </tbody>
     </table>
 
@@ -72,51 +69,53 @@
     </div>
 
 
-    <script src="jquery-3.3.1.min.js"></script>
-
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
         var isEditing = false,
             tempIdValue = 0,
             tempFnameValue = "",
             tempSnameValue = "",
-            tempLibrarianValue = "",
+            tempLibrarianValue = "";
 
-            // Handles live/dynamic element events, i.e. for newly created edit buttons
-            $;(document).on('click', '.edit', function () {
+        // Handles live/dynamic element events, i.e. for newly created edit buttons
+        $(document).on('click', '.edit', function () {
             var parentRow = $(this).closest('tr'),
                 tableBody = parentRow.closest('tbody'),
                 tdId = parentRow.children('td.id'),
-                tdFname = parentRow.children('td.fname'),
                 tdSname = parentRow.children('td.sname'),
+                tdFname = parentRow.children('td.fname'),
                 tdLibr = parentRow.children('td.librarian');
 
             if (isEditing) {
-                var fnameInput = tableBody.find('input[name="fname"]'),
-                    snameInput = tableBody.find('input[name="sname"]'),
-                    librInput = tableBody.find('input[name="librarian"]'),
-                    tdId = tableBody.find('input[name="id"]').closest('td'),
-                    tdFname = fnameInput.closest('td'),
-                    tdSname = snameInput.closest('td'),
-                    tdLibr = librInput.closest('td'),
-                    currentEdit = tdLibr.parent().find('td.edit');
+                var snameInput = tableBody.find('input[name="sname"]'),
+                    fnameInput = tableBody.find('input[name="fname"]'),
+                    librInput = tableBody.find('input[name="librarian"]');
+                tdId = parentRow.closest('.id');
+                tdFname = fnameInput.closest('td');
+                tdSname = snameInput.closest('td');
+                tdLibr = librInput.closest('td');
+                currentEdit = tdLibr.parent().find('td.edit');
 
                 if ($(this).is(currentEdit)) {
                     // Save new values as static html
-                    var tdIdValue = tdId.prop('value');
-                        tdFnameValue = fnameInput.prop('value');
-                    fnameInput.empty();
+                    var tdIdValue = tdId.text();
+                    tdFnameValue = fnameInput.prop('value');
+                    tdSnameValue = snameInput.prop('value');
+                    tdLibrValue = librInput.prop('value');
+
                     var Http = new XMLHttpRequest();
                     var url = location.href + '/edit';
                     Http.open('POST', url);
-                    Http.send(`id=${tdIdValue}&forename=${tdFnameValue}`);
+                    Http.send(`id=${tdIdValue}&forename=${tdFnameValue}&surname=${tdSnameValue}&librarian=${tdLibrValue}`);
 
                 } else {
                     // Restore previous html values
-                    tdNameInput.empty();
-                    tdDataInput.empty();
-
-                    tdNameInput.html(tempNameValue);
-                    tdDataInput.html(tempDataValue);
+                    // tdNameInput.empty();
+                    // tdDataInput.empty();
+                    //
+                    // tdNameInput.html(tempFnameValue);
+                    // tdDataInput.html(tempSnameValue);
                 }
                 // Display static row
                 currentEdit.html('Edit');
@@ -126,20 +125,23 @@
                 isEditing = true;
                 $(this).html('Save');
 
-                var tdNameValue = tdName.html(),
-                    tdDataValue = tdData.html();
+                var tdFnameValue = tdFname.html(),
+                    tdSnameValue = tdSname.html(),
+                    tdLibrValue = tdLibr.html();
 
                 // Save current html values for canceling an edit
-                tempNameValue = tdNameValue;
-                tempDataValue = tdDataValue;
+                tempFnameValue = tdFnameValue;
+                tempSnameValue = tdSnameValue;
+                tempLibrarianValue = tdLibrValue;
 
                 // Remove existing html values
-                tdName.empty();
-                tdData.empty();
-
+                tdFname.empty();
+                tdSname.empty();
+                tdLibr.empty();
                 // Create input forms
-                tdName.html('<input type="text" name="name" value="' + tdNameValue + '">');
-                tdData.html('<input type="text" name="data" value="' + tdDataValue + '">');
+                tdFname.html('<input type="text" name="fname" value="' + tdFnameValue + '">');
+                tdSname.html('<input type="text" name="sname" value="' + tdSnameValue + '">');
+                tdLibr.html('<input type="checkbox" name="librarian" value="' + tdLibrValue + '">');
             }
         });
 
