@@ -20,6 +20,7 @@ public class MemberService extends DatabaseService {
 
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
+                // TODO
                 handle.createUpdate("INSERT INTO library_members (forename, surname, librair) VALUES (:name, :logoUrl)")
                         .bind("forename", member.getForename())
                         .bind("surname", member.getSurname())
@@ -30,11 +31,11 @@ public class MemberService extends DatabaseService {
 
     public void editMember(Member member){
         jdbi.useHandle(handle ->
-                //TODO
-                handle.createUpdate("UPDATE library_members ...")
+                handle.createUpdate("UPDATE library_members SET forename = :forename, surname = :surname, librarian = :librarian WHERE member_id = :id")
                         .bind("forename", member.getForename())
                         .bind("surname", member.getSurname())
                         .bind("librarian", member.isLibrarian())
+                        .bind("id", member.getMemberId())
                         .execute()
         );
     }

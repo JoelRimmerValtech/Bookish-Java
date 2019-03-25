@@ -35,9 +35,11 @@
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>
-        <tr>Add New Member</tr>
+        <tr><td class="new-row" colspan="6">Add New Member</td></tr>
         </tbody>
     </table>
+
+    <div class="pagebreakimage"> <img src="https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg"/></div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center addmembers">
@@ -100,7 +102,7 @@
                     var tdIdValue = parseInt(tdId.text());
                     tdFnameValue = fnameInput.prop('value');
                     tdSnameValue = snameInput.prop('value');
-                    tdLibrValue = librInput.checked();
+                    tdLibrValue = librInput.is(':checked');
 
                     $.ajax({
                         url: '/staff/members/edit',
