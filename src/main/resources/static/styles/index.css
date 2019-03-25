@@ -39,7 +39,7 @@ li {
 }
 
 a {
-  color: #219e9a;
+  color: black;
 }
 
 h2,
@@ -88,11 +88,17 @@ a.button {
   padding: 8px 14px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 3px;
-  background-color: rgba(49, 49, 49, 0.5);
+
+  background-color: white;
+  text-decoration: none;
+}
+.bookbutton {
+  border-style: solid;
+  border-width: thin;
+  border-color: black;
 }
 a.button:hover, a.button:focus {
-  background-color: #219e9a;
+  background-color: darkgray;
 }
 
 
@@ -139,6 +145,7 @@ a.button:hover, a.button:focus {
   margin: 15px 0;
   padding: 15px;
   list-style-type: none;
+
 }
 .book-item:after {
   content: '';
@@ -154,14 +161,12 @@ a.button:hover, a.button:focus {
   transition: all 250ms ease-out;
 }
 .book-item:hover:after {
-  box-shadow: 0px 1px 1px 1px rgba(210, 214, 213, 0.5);
-  background-color: #fff;
 }
 .book-item:hover .item-img img {
   box-shadow: 0px 0px 10px 0px rgba(49, 49, 49, 0.25);
 }
-.book-item:hover a.button {
-  background-color: #219e9a;
+.book-item:hover {
+  background-color: rgba(0, 0, 0, 0.06);
 }
 .book-item:hover .bk-bookdefault {
   -webkit-transform: rotate3d(0, 1, 0, 25deg);
@@ -329,7 +334,7 @@ a.button:hover, a.button:focus {
 }
 .bk-img .bk-front > div,
 .bk-img .bk-left {
-  background-color: #219e9a;
+  background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-750-561.jpg);
 }
 
 /*
