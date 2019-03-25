@@ -6,14 +6,14 @@
 
 <head>
     <title>Manage Members</title>
-    <link rel="stylesheet" href="../static/styles/staffMembers.css"/>
+    <link rel="stylesheet" href="/styles/staffMembers.css"/>
 </head>
 
 <body>
 
 <div layout:fragment="main">
 
-    <h1>Members List</h1>
+    <h1 class="membersheading">Members List</h1>
 
     <table>
         <thead>
@@ -42,7 +42,7 @@
     </table>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center addmembers">
             <h2>Add Member</h2>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <form id="contact-form" class="form" action="/staff/members/add" method="POST" role="form">
                 <div class="form-group">
                     <label class="form-label" for="forename">Forename</label>
-                    <input type="text" class="form-control" id="forename" name="forename" placeholder="Your name"
+                    <input type="text" class="form-control" id="forename" name="forename" placeholder="Your first name"
                            tabindex="1" required>
                 </div>
                 <div class="form-group">
