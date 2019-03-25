@@ -27,7 +27,7 @@ public class BooksController {
     }
 
     @RequestMapping("")
-    ModelAndView books(@RequestParam("orderby") String orderBy) {
+    ModelAndView books(@RequestParam(value = "orderby", required = false) String orderBy) {
 
         List<Book> books = bookService.getBooks(orderBy);
 
