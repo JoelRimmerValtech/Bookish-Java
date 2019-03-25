@@ -15,8 +15,8 @@
     <div id="main-container" class="main-container nav-effect-1">
         <div class="main clearfix">
             <div class="page-container">
-                <div class="toolbar row">
-                    <!--TODO - Order By... a href with params-->
+                    <div class="toolbar row">
+                    </div>
                     <div class="small-12 medium-3 columns">
                         <select class="sort-options" onchange="javascript:reloadWithQueryStringVars({orderby: value})">
                             <option value="" disabled selected>Sort by</option>
@@ -49,8 +49,8 @@
                                     <h3 class="book-item_title" th:text="${book.title}"></h3>
                                     <p class="author">by <span th:text="${book.author}"></span> &bull; 2019</p>
                                     <p>Lorem Ipsum went to the shop and said happy birthday to the donkey named Shrek.
-                                        <br><br> <span th:text="${book.copies}"> copies available</span></p>
-                                    <a href="#" class="button">Details</a>
+                                        <br><br> <span th:text="${book.copies} + ' copies available'"></span></p>
+                                    <a href="#" class="button bookbutton">Details</a>
                                 </div>
 
                                 <div class="overlay-details">
