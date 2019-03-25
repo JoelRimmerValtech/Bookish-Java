@@ -31,12 +31,12 @@ public class StaffController {
         List<Member> memberList = memberService.getMembers();
         StaffPageMemberModel staffPageMemberModel = new StaffPageMemberModel();
         staffPageMemberModel.setMemberList(memberList);
-        return new ModelAndView("members", "members", staffPageMemberModel);
+        return new ModelAndView("staffMembers", "members", staffPageMemberModel);
     }
 
     @RequestMapping("/books")
     ModelAndView editBooks() {
-        return new ModelAndView("books");
+        return new ModelAndView("staffBooks");
     }
 
     @RequestMapping("/checkbook")

@@ -10,16 +10,15 @@
 
 <body>
 
-<main layout:fragment="main">
-    <div class="container">
+<div layout:fragment="main">
+
         <h1>Members List</h1>
 
         <div th:each="member : ${members.memberList}">
             <p><span th:text="${member.surname}"></span></p>
         </div>
 
-    </div>
-</main>
+</div>
 
 
 
