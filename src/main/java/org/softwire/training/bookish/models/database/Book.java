@@ -6,6 +6,9 @@ public class Book {
     private String title;
     private String author;
     private int copies;
+    private String imageUrl;
+    private int publishedYear;
+    private String synopsis;
 
     public Book() { }
 
@@ -25,6 +28,18 @@ public class Book {
         return copies;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public int getPublishedYear() {
+        return publishedYear;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
     public void setBookId(int bookId) {
         this.bookId = bookId;
     }
@@ -39,5 +54,17 @@ public class Book {
 
     public void setCopies(int copies) {
         this.copies = copies;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setPublishedYear(int publishedYear) {
+        this.publishedYear = publishedYear;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
     }
 }
