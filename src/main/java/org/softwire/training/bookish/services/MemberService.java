@@ -18,5 +18,23 @@ public class MemberService extends DatabaseService {
     }
 
 
+    public void addMember(Member member) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO library_members (forename, surname, librair) VALUES (:name, :logoUrl)")
+                        .bind("forename", member.getForename())
+                        .bind("surname", member.getSurname())
+                        .bind("librarian", member.isLibrarian())
+                        .execute()
+        );
+    }
+
+    public void deleteMember(int memberId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM library_members WHERE id = :id")
+                        .bind("id", memberId)
+                        .execute()
+        );
+    }
+
 
 }

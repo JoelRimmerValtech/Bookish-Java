@@ -4,7 +4,7 @@
 
 <!--@thymesVar id="members" type="org.softwire.training.bookish.models.page.StaffPageMemberModel"-->
 
-<head layout:fragment="head">
+<head>
     <title>Manage Members</title>
 </head>
 
@@ -20,12 +20,47 @@
             <th>Surname</th>
             <th>Forename</th>
             <th>Librarian?</th>
+            <th>Modify</th>
+            <th>Delete?</th>
         </tr>
-        <tr th:each="member : ${members.memberList}"></tr>
+        <tr th:each="member : ${members.memberList}">
+            <td th:text="${member.memberId}"></td>
+            <td th:text="${member.surname}"></td>
+            <td th:text="${member.forename}"></td>
+            <td th:text="${member.librarian}"></td>
+            <td><button type="button">Modify</button> </td>
+            <td><button type="button">Delete</button> </td>
+        </tr>
     </table>
 
-</div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <h2>Add Member</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
+            <form id="contact-form" class="form" action="#" method="POST" role="form">
+                <div class="form-group">
+                    <label class="form-label" for="forename">Forname</label>
+                    <input type="text" class="form-control" id="forename" name="forename" placeholder="Your name" tabindex="1" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="surname">Surname</label>
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Your Surname" tabindex="2" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="librarian">Are you a librarian</label>
+                    <input type="radio" class="form-control" id="librarian" name="librarian" placeholder="Subject" tabindex="3">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-start-order">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
+</div>
 
 
 </body>
