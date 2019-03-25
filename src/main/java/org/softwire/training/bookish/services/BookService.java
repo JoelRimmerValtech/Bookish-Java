@@ -9,6 +9,10 @@ import java.util.List;
 public class BookService extends DatabaseService {
 
     public List<Book> getBooks(String orderBy) {
+        if (orderBy == null) return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM library_books")
+                        .mapToBean(Book.class).list()
+        );
         switch (orderBy) {
             case "author":
                 return jdbi.withHandle(handle ->
