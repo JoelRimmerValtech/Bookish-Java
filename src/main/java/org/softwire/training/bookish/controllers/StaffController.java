@@ -2,7 +2,7 @@ package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Member;
 import org.softwire.training.bookish.models.page.StaffPageMemberModel;
-import org.softwire.training.bookish.services.StaffService;
+import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController {
 
-    private final StaffService staffService;
+    private final MemberService memberService;
 
     @Autowired
-    public StaffController(StaffService staffService) {
-        this.staffService = staffService;
+    public StaffController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @RequestMapping("")
@@ -28,7 +28,7 @@ public class StaffController {
 
     @RequestMapping("/members")
     ModelAndView editMembers() {
-        List<Member> memberList = staffService.getMembers();
+        List<Member> memberList = memberService.getMembers();
         StaffPageMemberModel staffPageMemberModel = new StaffPageMemberModel();
         staffPageMemberModel.setMemberList(memberList);
         return new ModelAndView("members", "members", staffPageMemberModel);

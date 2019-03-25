@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
 
 <!--@thymesVar id="members" type="org.softwire.training.bookish.models.page.StaffPageMemberModel"-->
 
-<head>
-    <title>Staff - Members</title>
-
-    <link rel="stylesheet" href="/styles/general.css"/>
-    <link rel="stylesheet" href="/styles/navbar.css"/>
-    <link rel="stylesheet" href="/styles/staffOverview.css"/>
+<head layout:fragment="head">
+    <title>Manage Members</title>
 </head>
 
 <body>
 
-<div th:replace="fragments/navbar :: navbar"></div>
+<main layout:fragment="main">
+    <div class="container">
+        <h1>Members List</h1>
 
-<div class="container">
-    <h1>Members List</h1>
+        <div th:each="member : ${members.memberList}">
+            <p><span th:text="${member.surname}"></span></p>
+        </div>
 
-    <div th:each="member : ${members.memberList}">
-        <p> <span th:text="${member.surname}"></span></p>
     </div>
+</main>
 
-</div>
+
 
 </body>
 

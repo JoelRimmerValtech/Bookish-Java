@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StaffService extends DatabaseService {
+public class MemberService extends DatabaseService {
 
     public List<Member> getMembers() {
         return jdbi.withHandle(handle ->

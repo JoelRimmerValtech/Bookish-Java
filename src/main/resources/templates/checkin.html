@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
 
 
-<head>
-    <title>Staff - Overview</title>
-
-    <link rel="stylesheet" href="/styles/general.css"/>
-    <link rel="stylesheet" href="/styles/navbar.css"/>
-    <link rel="stylesheet" href="/styles/staffOverview.css"/>
+<head layout:fragment="head">
+    <title>Staff Check In Books</title>
 </head>
 
 <body>
 
-<div th:replace="fragments/navbar :: navbar"></div>
+<main layout:fragment="main">
+    <div class="container">
+        <h1>Staff Library Management System</h1>
 
-<div class="container">
-    <h1>Staff Library Management System</h1>
+        <p class="lead">Welcome to the Bookish application</p>
+        <p class="lead">Find your way around using the links above</p>
 
-    <p class="lead">Welcome to the Bookish application</p>
-    <p class="lead">Find your way around using the links above</p>
+    </div>
+</main>
 
-</div>
+
 
 </body>
 

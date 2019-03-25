@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head layout:fragment="head">
+    <title layout:title-pattern="$CONTENT-TITLE - $LAYOUT-TITLE">Bookish</title>
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+    <link rel="stylesheet" href="/styles/index.css"/>
+</head>
+
+<body>
+    <!-- Import NavBar Fragment -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <main layout:fragment="main">
+        <p>Default Main Page Content. Please Change...</p>
+    </main>
+<footer>All Rights Reserved. Joel and Dali 2019 Copyright.</footer>
+</body>
+
+</html>
