@@ -8,62 +8,64 @@
     <title>Manage Members</title>
     <style>
         * {
-  margin: 0;
-  padding: 0;
-}
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-  background-color: #f5f5f5;
-  font-family: 'Raleway', sans-serif;
-  color: #2a2a2a;
-}
-body input[type="text"] {
-  padding-left: 0.5rem;
-  margin-left: -0.5rem;
-  width: 100%;
-  line-height: 1.8rem;
-  font-size: 1rem;
-  font-family: inherit;
-  background-color: #f5f5f5;
-  border: 0px;
-}
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
+            color: #2a2a2a;
+        }
 
-.content {
-  margin: 80px auto;
-  max-width: 1200px;
-}
+        body input[type="text"] {
+            padding-left: 0.5rem;
+            margin-left: -0.5rem;
+            width: 100%;
+            line-height: 1.8rem;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: #f5f5f5;
+            border: 0px;
+        }
 
-table {
-  margin: 0 auto;
-  width: 90%;
-  background-color: #ddd;
-  border: 1px solid #999;
-}
-table thead th {
-  padding-left: 0.5rem;
-  line-height: 2rem;
-  font-size: 1.25rem;
-}
-table tbody td {
-  padding-left: 0.5rem;
-  border: 1px solid #999;
-  line-height: 1.8rem;
-}
+        .content {
+            margin: 80px auto;
+            max-width: 1200px;
+        }
 
-.edit, .trash, .new-row {
-  padding: 0;
-  text-align: center;
-  text-transform: uppercase;
-  transition: background-color 0.4s ease;
-  transition: color 0.4s ease;
-}
-.edit:hover, .trash:hover, .new-row:hover {
-  cursor: pointer;
-  background-color: #2a2a2a;
-  color: #ddd;
-}
+        table {
+            margin: 0 auto;
+            width: 90%;
+            background-color: #ddd;
+            border: 1px solid #999;
+        }
 
+        table thead th {
+            padding-left: 0.5rem;
+            line-height: 2rem;
+            font-size: 1.25rem;
+        }
 
+        table tbody td {
+            padding-left: 0.5rem;
+            border: 1px solid #999;
+            line-height: 1.8rem;
+        }
+
+        .edit, .trash, .new-row {
+            padding: 0;
+            text-align: center;
+            text-transform: uppercase;
+            transition: background-color 0.4s ease;
+            transition: color 0.4s ease;
+        }
+
+        .edit:hover, .trash:hover, .new-row:hover {
+            cursor: pointer;
+            background-color: #2a2a2a;
+            color: #ddd;
+        }
 
 
     </style>
@@ -134,122 +136,121 @@ table tbody td {
 
     <script>
         var isEditing = false,
-        tempIdValue = 0,
-        tempFnameValue = "",
-        tempSnameValue = "",
-        tempLibrarianValue = "",
+            tempIdValue = 0,
+            tempFnameValue = "",
+            tempSnameValue = "",
+            tempLibrarianValue = "",
 
-        // Handles live/dynamic element events, i.e. for newly created edit buttons
-        $(document).on('click', '.edit', function() {
+            // Handles live/dynamic element events, i.e. for newly created edit buttons
+            $
+        (document).on('click', '.edit', function () {
             var parentRow = $(this).closest('tr'),
-            tableBody = parentRow.closest('tbody'),
-            tdId = parentRow.children('td.id'),
-            tdFname = parentRow.children('td.fname'),
-            tdSname = parentRow.children('td.sname'),
-            tdLibr = parentRow.children('td.librarian');
+                tableBody = parentRow.closest('tbody'),
+                tdId = parentRow.children('td.id'),
+                tdFname = parentRow.children('td.fname'),
+                tdSname = parentRow.children('td.sname'),
+                tdLibr = parentRow.children('td.librarian');
 
-            if(isEditing) {
+            if (isEditing) {
                 var idInput = tableBody.find('input[name="id"]'),
-                fnameInput = tableBody.find('input[name="fname"]'),
-                snameInput = tableBody.find('input[name="sname"]'),
-                librInput = tableBody.find('input[name="librarian"]'),
-                tdId = idInput.closest('td'),
-                tdFname = fnameInput.closest('td'),
-                tdSname = snameInput.closest('td'),
-                tdLibr = librInput.closest('td'),
-                currentEdit = tdLibr.parent().find('td.edit');
+                    fnameInput = tableBody.find('input[name="fname"]'),
+                    snameInput = tableBody.find('input[name="sname"]'),
+                    librInput = tableBody.find('input[name="librarian"]'),
+                    tdId = idInput.closest('td'),
+                    tdFname = fnameInput.closest('td'),
+                    tdSname = snameInput.closest('td'),
+                    tdLibr = librInput.closest('td'),
+                    currentEdit = tdLibr.parent().find('td.edit');
 
-                if($(this).is(currentEdit)) {
+                if ($(this).is(currentEdit)) {
                     // Save new values as static html
                     var tdNameValue = nameInput.prop('value'),
-                    tdDataValue = dataInput.prop('value');
+                        tdDataValue = dataInput.prop('value');
                     tdNameInput.empty();
                     tdDataInput.empty();
                     tdNameInput.html(tdNameValue);
                     tdDataInput.html(tdDataValue);
+                } else {
+                    // Restore previous html values
+                    tdNameInput.empty();
+                    tdDataInput.empty();
+
+                    tdNameInput.html(tempNameValue);
+                    tdDataInput.html(tempDataValue);
                 }
-            else {
+                // Display static row
+                currentEdit.html('Edit');
+                isEditing = false;
+            } else {
+                // Display editable input row
+                isEditing = true;
+                $(this).html('Save');
+
+                var tdNameValue = tdName.html(),
+                    tdDataValue = tdData.html();
+
+                // Save current html values for canceling an edit
+                tempNameValue = tdNameValue;
+                tempDataValue = tdDataValue;
+
+                // Remove existing html values
+                tdName.empty();
+                tdData.empty();
+
+                // Create input forms
+                tdName.html('<input type="text" name="name" value="' + tdNameValue + '">');
+                tdData.html('<input type="text" name="data" value="' + tdDataValue + '">');
+            }
+        });
+
+        // Handles live/dynamic element events, i.e. for newly created trash buttons
+        $(document).on('click', '.trash', function () {
+            // Turn off editing if row is current input
+            if (isEditing) {
+                var parentRow = $(this).closest('tr'),
+                    tableBody = parentRow.closest('tbody'),
+                    tdInput = tableBody.find('input').closest('td'),
+                    currentEdit = tdInput.parent().find('td.edit'),
+                    thisEdit = parentRow.find('td.edit');
+
+                if (thisEdit.is(thisEdit)) {
+                    isEditing = false;
+                }
+            }
+
+            // Remove selected row from table
+            $(this).closest('tr').remove();
+        });
+
+        $('.new-row').on('click', function () {
+            var tableBody = $(this).closest('tbody'),
+                trNew = '<tr><td class="name"><input type="text" name="name" value=""></td><td class="data"><input type="text" name="data" value=""></td><td class="edit">Save</td><td class="trash">delete</td></tr>';
+
+            if (isEditing) {
+                var nameInput = tableBody.find('input[name="name"]'),
+                    dataInput = tableBody.find('input[name="data"]'),
+                    tdNameInput = nameInput.closest('td'),
+                    tdDataInput = dataInput.closest('td'),
+                    currentEdit = tdNameInput.parent().find('td.edit');
+
+                // Get current input values for newly created input cases
+                var newNameInput = nameInput.prop('value'),
+                    newDataInput = dataInput.prop('value');
+
                 // Restore previous html values
                 tdNameInput.empty();
                 tdDataInput.empty();
 
-                tdNameInput.html(tempNameValue);
-                tdDataInput.html(tempDataValue);
+                tdNameInput.html(newNameInput);
+                tdDataInput.html(newDataInput);
+
+                // Display static row
+                currentEdit.html('Edit');
             }
-            // Display static row
-            currentEdit.html('Edit');
-            isEditing = false;
-        } else {
-            // Display editable input row
+
             isEditing = true;
-            $(this).html('Save');
-
-            var tdNameValue = tdName.html(),
-            tdDataValue = tdData.html();
-
-            // Save current html values for canceling an edit
-            tempNameValue = tdNameValue;
-            tempDataValue = tdDataValue;
-
-            // Remove existing html values
-            tdName.empty();
-            tdData.empty();
-
-            // Create input forms
-            tdName.html('<input type="text" name="name" value="' + tdNameValue + '">');
-            tdData.html('<input type="text" name="data" value="' + tdDataValue + '">');
-        }
+            tableBody.find('tr:last').before(trNew);
         });
-
-// Handles live/dynamic element events, i.e. for newly created trash buttons
-$(document).on('click', '.trash', function() {
-   // Turn off editing if row is current input
-   if(isEditing) {
-      var parentRow = $(this).closest('tr'),
-          tableBody = parentRow.closest('tbody'),
-          tdInput = tableBody.find('input').closest('td'),
-          currentEdit = tdInput.parent().find('td.edit'),
-          thisEdit = parentRow.find('td.edit');
-
-      if(thisEdit.is(thisEdit)) {
-         isEditing = false;
-      }
-   }
-
-   // Remove selected row from table
-   $(this).closest('tr').remove();
-});
-
-$('.new-row').on('click', function() {
-   var tableBody = $(this).closest('tbody'),
-       trNew = '<tr><td class="name"><input type="text" name="name" value=""></td><td class="data"><input type="text" name="data" value=""></td><td class="edit">Save</td><td class="trash">delete</td></tr>';
-
-   if(isEditing) {
-      var nameInput = tableBody.find('input[name="name"]'),
-          dataInput = tableBody.find('input[name="data"]'),
-          tdNameInput = nameInput.closest('td'),
-          tdDataInput = dataInput.closest('td'),
-          currentEdit = tdNameInput.parent().find('td.edit');
-
-      // Get current input values for newly created input cases
-      var newNameInput = nameInput.prop('value'),
-          newDataInput = dataInput.prop('value');
-
-      // Restore previous html values
-      tdNameInput.empty();
-      tdDataInput.empty();
-
-      tdNameInput.html(newNameInput);
-      tdDataInput.html(newDataInput);
-
-      // Display static row
-      currentEdit.html('Edit');
-   }
-
-   isEditing = true;
-   tableBody.find('tr:last').before(trNew);
-});
-
 
 
     </script>
