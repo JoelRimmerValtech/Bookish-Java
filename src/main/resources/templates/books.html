@@ -15,19 +15,18 @@
     <div id="main-container" class="main-container nav-effect-1">
         <div class="main clearfix">
             <div class="page-container">
-                <section id="book_list">
-                    <div class="toolbar row">
-                        <!--TODO - Order By... a href with params-->
-                        <div class="small-12 medium-3 columns">
-                            <select class="sort-options" onchange="javascript:reloadWithQueryStringVars({orderby: value})">
-                                <option value="" disabled selected>Sort by</option>
-                                <option value="author">Author</option>
-                                <option value="alpha">Alphabetical</option>
-                                <option value="date">Published</option>
-                            </select>
-                        </div>
+                <div class="toolbar row">
+                    <!--TODO - Order By... a href with params-->
+                    <div class="small-12 medium-3 columns">
+                        <select class="sort-options" onchange="javascript:reloadWithQueryStringVars({orderby: value})">
+                            <option value="" disabled selected>Sort by</option>
+                            <option value="author">Author</option>
+                            <option value="alpha">Alphabetical</option>
+                            <option value="date">Published</option>
+                        </select>
                     </div>
-
+                </div>
+                <section id="book_list">
                     <div class="grid-shuffle">
                         <ul id="grid" class="row">
                             <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6 columns"
@@ -49,8 +48,8 @@
                                 <div class="item-details">
                                     <h3 class="book-item_title" th:text="${book.title}"></h3>
                                     <p class="author">by <span th:text="${book.author}"></span> &bull; 2019</p>
-                                    <p>Lorem Ipsum went to the shop and said happy birthday to the donkey named Shrek.</p>
-                                    <p><span th:text="${book.copies}"> copies available</span></p>
+                                    <p>Lorem Ipsum went to the shop and said happy birthday to the donkey named Shrek.
+                                        <br><br> <span th:text="${book.copies}"> copies available</span></p>
                                     <a href="#" class="button">Details</a>
                                 </div>
 
