@@ -1,0 +1,67 @@
+body {
+    text-align: center;
+    padding: 50px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* GENERAL STYLE BUTTON */
+a {
+    margin: 10px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn {
+    width: 240px;
+    height: 60px;
+    text-decoration: none;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    letter-spacing: 1px;
+    font-size: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BORDER STYLE BUTTON */
+.btn-border {
+    border: 3px solid black;
+    border-top: 0;
+    border-bottom: 0;
+}
+.btn-border:before, .btn-border:after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+    transition: all .2s ease;
+}
+.btn-border:before {
+    top: 0;
+}
+.btn-border:after {
+    bottom: 0;
+}
+.btn-border:hover:before {
+    left: 100%;
+}
+.btn-border:hover:after {
+    left: -100%;
+}
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
