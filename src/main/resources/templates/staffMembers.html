@@ -184,37 +184,6 @@
                 contentType: 'application/json; charset=utf-8',
             });
 
-            $(this).closest('tr').remove();
-        });
-
-        $('.new-row').on('click', function () {
-            var tableBody = $(this).closest('tbody'),
-                trNew = '<tr><td class="name"><input type="text" name="name" value=""></td><td class="data"><input type="text" name="data" value=""></td><td class="edit">Save</td><td class="trash">delete</td></tr>';
-
-            if (isEditing) {
-                var nameInput = tableBody.find('input[name="name"]'),
-                    dataInput = tableBody.find('input[name="data"]'),
-                    tdNameInput = nameInput.closest('td'),
-                    tdDataInput = dataInput.closest('td'),
-                    currentEdit = tdNameInput.parent().find('td.edit');
-
-                // Get current input values for newly created input cases
-                var newNameInput = nameInput.prop('value'),
-                    newDataInput = dataInput.prop('value');
-
-                // Restore previous html values
-                tdNameInput.empty();
-                tdDataInput.empty();
-
-                tdNameInput.html(newNameInput);
-                tdDataInput.html(newDataInput);
-
-                // Display static row
-                currentEdit.html('Edit');
-            }
-
-            isEditing = true;
-            tableBody.find('tr:last').before(trNew);
         });
     </script>
     <script>
