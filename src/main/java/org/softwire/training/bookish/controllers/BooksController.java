@@ -21,6 +21,7 @@ import java.util.List;
 public class BooksController {
 
     private final BookService bookService;
+
     @Autowired
     public BooksController(BookService bookService) {
         this.bookService = bookService;
@@ -29,7 +30,7 @@ public class BooksController {
     @RequestMapping("")
     ModelAndView books(@RequestParam(value = "orderby", required = false) String orderBy) {
 
-        List<Book> books = bookService.getBooks(orderBy);
+        List<Book> books = bookService.getBooks(orderBy == null ? "" : orderBy);
 
         BookModel bookModel = new BookModel();
         bookModel.setBookList(books);
