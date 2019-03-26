@@ -59,6 +59,15 @@ public class StaffController {
         return new RedirectView("/staff");
     }
 
+
+    @RequestMapping("/members/delete")
+    RedirectView deleteMembers(@RequestParam Integer id) {
+        memberService.deleteMember(id);
+        return new RedirectView("/staff");
+    }
+
+
+
     @RequestMapping("/books")
     ModelAndView editBooks() {
         return new ModelAndView("staffBooks");

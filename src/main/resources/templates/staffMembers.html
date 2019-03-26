@@ -106,6 +106,7 @@
                     $.ajax({
                         url: '/staff/members/edit',
                         type: 'POST',
+                        success: () => { location.reload(); },
                         data: JSON.stringify({
                             memberId: tdIdValue,
                             forename: tdFnameValue,
@@ -113,15 +114,18 @@
                             librarian: tdLibrValue
                         }),
                         dataType: 'json',
-                        contentType: 'application/json; charset=utf-8'
+                        contentType: 'application/json; charset=utf-8',
                     });
                 } else {
                     // Restore previous html values
-                    // tdNameInput.empty();
-                    // tdDataInput.empty();
-                    //
-                    // tdNameInput.html(tempFnameValue);
-                    // tdDataInput.html(tempSnameValue);
+                    fnameInput.empty();
+                    snameInput.empty();
+                    librInput.empty();
+
+                    fnameInput.html(tempFnameValue);
+                    snameInput.html(tempSnameValue);
+                    librInput.html(tempLibrarianValue);
+
                 }
                 // Display static row
                 currentEdit.html('Edit');
@@ -133,7 +137,7 @@
 
                 var tdFnameValue = tdFname.html(),
                     tdSnameValue = tdSname.html(),
-                    tdLibrValue = tdLibr.html();
+                    tdLibrValue = tdLibr.html() === 'true';
 
                 // Save current html values for canceling an edit
                 tempFnameValue = tdFnameValue;
@@ -166,11 +170,19 @@
                 }
             }
 
+            var idVal = parentRow.children('td.id');
+
             // Remove selected row from table
-            // var Http = new XMLHttpRequest();
-            // var url = location.href + '/edit';
-            // Http.open('POST', url);
-            // Http.send(`id=${tdIdValue}&forename=${tdFnameValue}`);
+            $.ajax({
+                url: '/staff/members/delete',
+                type: 'POST',
+                success: () => { location.reload(); },
+                data: JSON.stringify({
+                    memberId: Integer.parseInt(idVal)
+                }),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+            });
 
             $(this).closest('tr').remove();
         });
