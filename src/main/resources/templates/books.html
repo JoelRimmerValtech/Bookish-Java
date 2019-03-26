@@ -7,6 +7,7 @@
 
 <head>
     <title>Welcome</title>
+    <link rel="stylesheet" href="styles/books.css">
 </head>
 
 <body>
@@ -15,7 +16,10 @@
     <div id="main-container" class="main-container nav-effect-1">
         <div class="main clearfix">
             <div class="page-container">
-                    <div class="toolbar row">
+                <div class="search-and-filter">
+                    <div class="searchform cf">
+                        <input type="text" placeholder="Search by title or author">
+                        <button type="submit">Search</button>
                     </div>
                     <div class="small-12 medium-3 columns sortoptionscontainer">
                         <select class="sort-options" onchange="reloadWithQueryStringVars({orderby: value})">
@@ -26,6 +30,7 @@
                         </select>
                     </div>
                 </div>
+            </div>
                 <section id="book_list">
                     <div class="grid-shuffle">
                         <ul id="grid" class="row">
