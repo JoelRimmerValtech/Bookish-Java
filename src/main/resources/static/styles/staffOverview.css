@@ -1,6 +1,5 @@
 body {
     text-align: center;
-    padding: 50px;
 }
 
 * {
@@ -8,7 +7,7 @@ body {
 }
 
 /* GENERAL STYLE BUTTON */
-a {
+a.btn {
     margin: 10px;
     overflow: hidden;
     display: inline-block;
@@ -46,6 +45,9 @@ a {
     width: 100%;
     height: 3px;
     background: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+    background-position: 45% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: all .2s ease;
 }
 .btn-border:before {
