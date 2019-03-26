@@ -171,8 +171,8 @@
                     isEditing = false;
                 }
             }
-
-            var idVal = parentRow.children('td.id');
+            var parenttRow = $(this).closest('tr');
+            var idVal = parenttRow.children('td.id');
 
             // Remove selected row from table
             $.ajax({
@@ -193,6 +193,8 @@
         $('#add-member-button').click(function () {
             $('#add-member-form').get(0).scrollIntoView();
         });
+
+        $()
     </script>
 </div>
 

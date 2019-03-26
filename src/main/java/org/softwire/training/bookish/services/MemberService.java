@@ -21,7 +21,7 @@ public class MemberService extends DatabaseService {
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
                 // TODO
-                handle.createUpdate("INSERT INTO library_members (forename, surname, librair) VALUES (:name, :logoUrl)")
+                handle.createUpdate("INSERT INTO library_members (forename, surname, librarian) VALUES (:forename, :surname, :librarian)")
                         .bind("forename", member.getForename())
                         .bind("surname", member.getSurname())
                         .bind("librarian", member.isLibrarian())
