@@ -106,7 +106,10 @@
                     $.ajax({
                         url: '/staff/members/edit',
                         type: 'POST',
-                        success: () => { location.reload(); },
+                        success: () => {
+                            console.debug('John Travolta did this');
+                            window.location.reload();
+                        },
                         data: JSON.stringify({
                             memberId: tdIdValue,
                             forename: tdFnameValue,
@@ -176,7 +179,10 @@
             $.ajax({
                 url: '/staff/members/delete',
                 type: 'POST',
-                success: () => { location.reload(); },
+                success: () => {
+                    window.location.reload();
+                    console.debug('Bob Sagel was here');
+                },
                 data: JSON.stringify({
                     memberId: Integer.parseInt(idVal)
                 }),
@@ -185,9 +191,8 @@
             });
 
         });
-    </script>
-    <script>
-        $('#add-member-button').click(function() {
+
+        $('#add-member-button').click(function () {
             $('#add-member-form').get(0).scrollIntoView();
         });
     </script>
