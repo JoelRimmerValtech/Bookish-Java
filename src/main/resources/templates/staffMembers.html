@@ -35,13 +35,13 @@
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>
-        <tr><td class="new-row" colspan="6">Add New Member</td></tr>
+        <tr id="add-member-button"><td class="new-row" colspan="6">Add New Member</td></tr>
         </tbody>
     </table>
 
-    <div class="pagebreakimage"> <img src="https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg"/></div>
+    <div class="pagebreakimage"></div>
 
-    <div class="row">
+    <div class="row" id="add-member-form">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center addmembers">
             <h2>Add Member</h2>
         </div>
@@ -72,8 +72,7 @@
     </div>
 
 
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
         var isEditing = false,
             tempIdValue = 0,
@@ -205,8 +204,11 @@
             isEditing = true;
             tableBody.find('tr:last').before(trNew);
         });
-
-
+    </script>
+    <script>
+        $('#add-member-button').click(function() {
+            $('#add-member-form').get(0).scrollIntoView();
+        });
     </script>
 </div>
 
