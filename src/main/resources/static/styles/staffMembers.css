@@ -70,10 +70,13 @@ h2 {
 }
 
 .pagebreakimage {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  clip: rect(0px,0px,30px,0px);
-  width: 100%;
-  margin: 6px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 6px;
+  margin-bottom: 6px;
+  width: 100vw;
+  background-image: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+  background-size: cover;
+  height: 3000px;
+  background-position: 0% 34%;
 }
