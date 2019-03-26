@@ -20,7 +20,6 @@ public class MemberService extends DatabaseService {
 
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
-                // TODO
                 handle.createUpdate("INSERT INTO library_members (forename, surname, librarian) VALUES (:forename, :surname, :librarian)")
                         .bind("forename", member.getForename())
                         .bind("surname", member.getSurname())
@@ -42,7 +41,7 @@ public class MemberService extends DatabaseService {
 
     public void deleteMember(int memberId) {
         jdbi.useHandle(handle ->
-                handle.createUpdate("DELETE FROM library_members WHERE id = :id")
+                handle.createUpdate("DELETE FROM library_members WHERE member_id = :id")
                         .bind("id", memberId)
                         .execute()
         );
