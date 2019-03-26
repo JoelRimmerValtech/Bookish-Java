@@ -106,7 +106,7 @@
                     $.ajax({
                         url: '/staff/members/edit',
                         type: 'POST',
-                        success: () => {
+                        success: function() {
                             console.debug('John Travolta did this');
                             window.location.reload();
                         },
@@ -116,8 +116,7 @@
                             surname: tdSnameValue,
                             librarian: tdLibrValue
                         }),
-                        dataType: 'json',
-                        contentType: 'application/json; charset=utf-8',
+                        contentType: 'application/json; charset=utf-8'
                     });
                 } else {
                     // Restore previous html values
@@ -179,15 +178,14 @@
             $.ajax({
                 url: '/staff/members/delete',
                 type: 'POST',
-                success: () => {
+                success: function() {
+                    console.debug('Bob Saget was here');
                     window.location.reload();
-                    console.debug('Bob Sagel was here');
                 },
                 data: JSON.stringify({
                     memberId: Integer.parseInt(idVal)
                 }),
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json; charset=utf-8'
             });
 
         });
