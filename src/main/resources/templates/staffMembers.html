@@ -35,7 +35,9 @@
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>
-        <tr id="add-member-button"><td class="new-row" colspan="6">Add New Member</td></tr>
+        <tr id="add-member-button">
+            <td class="new-row" colspan="6">Add New Member</td>
+        </tr>
         </tbody>
     </table>
 
@@ -72,13 +74,13 @@
     </div>
 
 
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
         var isEditing = false,
-            tempIdValue = 0,
             tempFnameValue = "",
             tempSnameValue = "",
-            tempLibrarianValue = "";
+            tempLibrarianValue = false;
 
         // Handles live/dynamic element events, i.e. for newly created edit buttons
         $(document).on('click', '.edit', function () {
@@ -92,9 +94,8 @@
             if (isEditing) {
                 var snameInput = tableBody.find('input[name="sname"]'),
                     fnameInput = tableBody.find('input[name="fname"]'),
-                    librInput = tableBody.find('input[name="librarian"]');
-                tdId = parentRow.children('td.id');
-                currentEdit = tdLibr.parent().find('td.edit');
+                    librInput = tableBody.find('input[name="librarian"]'),
+                    currentEdit = parentRow.children('td.edit');
 
                 if ($(this).is(currentEdit)) {
                     // Save new values as static html
@@ -106,8 +107,7 @@
                     $.ajax({
                         url: '/staff/members/edit',
                         type: 'POST',
-                        success: function() {
-                            console.debug('John Travolta did this');
+                        success: function () {
                             window.location.reload();
                         },
                         data: JSON.stringify({
@@ -153,7 +153,8 @@
                 // Create input forms
                 tdFname.html('<input type="text" name="fname" value="' + tdFnameValue + '">');
                 tdSname.html('<input type="text" name="sname" value="' + tdSnameValue + '">');
-                tdLibr.html('<input type="checkbox" name="librarian" value="' + tdLibrValue + '">');
+                tdLibr.html(`<input type="checkbox" name="librarian" checked="${tdLibrValue}" value="${tdLibrValue}">`);
+
             }
         });
 
@@ -172,18 +173,18 @@
                 }
             }
             var parenttRow = $(this).closest('tr');
-            var idVal = parenttRow.children('td.id');
+            var idVal = parenttRow.children('td.id').text();
 
             // Remove selected row from table
             $.ajax({
                 url: '/staff/members/delete',
                 type: 'POST',
-                success: function() {
-                    console.debug('Bob Saget was here');
+                success: function () {
+                    console.debug('BOb Sagel');
                     window.location.reload();
                 },
                 data: JSON.stringify({
-                    memberId: Integer.parseInt(idVal)
+                    memberId: parseInt(idVal)
                 }),
                 contentType: 'application/json; charset=utf-8'
             });
@@ -194,8 +195,9 @@
             $('#add-member-form').get(0).scrollIntoView();
         });
 
-        $()
+
     </script>
+
 </div>
 
 
