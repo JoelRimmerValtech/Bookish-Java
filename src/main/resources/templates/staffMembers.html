@@ -183,6 +183,8 @@
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
             });
+
+            $(this).closest('tr').remove();
         });
 
         $('.new-row').on('click', function () {
@@ -213,6 +215,11 @@
 
             isEditing = true;
             tableBody.find('tr:last').before(trNew);
+        });
+    </script>
+    <script>
+        $('#add-member-button').click(function() {
+            $('#add-member-form').get(0).scrollIntoView();
         });
     </script>
 </div>
