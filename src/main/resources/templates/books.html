@@ -263,8 +263,13 @@
                     <form class="searchform cf" action="/books">
                         <input type="text" placeholder="Search by title or author">
                         <button type="submit">Search</button>
+<<<<<<< HEAD
                     </form>
                     <div class="small-12 medium-3 columns sortoptionscontainer">
+=======
+                    </div>
+                    <div class="small-12 medium-3 sortoptionscontainer">
+>>>>>>> b3b19d5bebb82c3a16853d77ae69eb7b03074f2b
                         <select class="sort-options" onchange="reloadWithQueryStringVars({orderby: value})">
                             <option value="" disabled selected>Sort by</option>
                             <option value="author">Author</option>
@@ -274,6 +279,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <section id="book_list">
                 <div class="grid-shuffle">
                     <ul id="grid" class="row">
@@ -286,6 +292,22 @@
                                         <div class="bk-front">
                                             <div class="bk-cover"
                                                  th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover;'"></div>
+=======
+                <section id="book_list">
+                    <div class="grid-shuffle">
+                        <ul id="grid" class="row">
+                            <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6"
+                                data-date-created="${book.publishedYear}"
+                                data-title="${book.title}" data-color="#fcc278">
+                                <div class="bk-img">
+                                    <div class="bk-wrapper">
+                                        <div class="bk-book bk-bookdefault">
+                                            <div class="bk-front">
+                                                <div class="bk-cover" th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover;'"></div>
+                                            </div>
+                                            <div class="bk-back"></div>
+                                            <div class="bk-left" th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover; background-position: 0% 30%;'"></div>
+>>>>>>> b3b19d5bebb82c3a16853d77ae69eb7b03074f2b
                                         </div>
                                         <div class="bk-back"></div>
                                         <div class="bk-left"
