@@ -90,3 +90,9 @@ h2 {
 .addmemberbutton {
   margin-bottom: 5px;
 }
+
+.hide-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

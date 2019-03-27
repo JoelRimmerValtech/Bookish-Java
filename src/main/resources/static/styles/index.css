@@ -542,11 +542,6 @@ a.button:hover, a.button:focus {
   display: none;
 }
 
-.sortoptionscontainer {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .mapheader {
   text-align: center;
   font-family: 'Goudy Bookletter 1911', serif;

@@ -34,9 +34,9 @@
             <td class="title" th:text="${book.title}"></td>
             <td class="author" th:text="${book.author}"></td>
             <td class="copies" th:text="${book.copies}"></td>
-            <td class="imgUrl" th:text="${book.imageUrl}"></td>
+            <td class="imgUrl hide-overflow" th:text="${book.imageUrl}"></td>
             <td class="publishedYear" th:text="${book.publishedYear}"></td>
-            <td nowrap="nowrap" class="synopsis" th:text="${book.synopsis}"></td>
+            <td class="synopsis hide-overflow" th:text="${book.synopsis}"></td>
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>

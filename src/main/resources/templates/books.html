@@ -273,40 +273,40 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <section id="book_list">
-                <div class="grid-shuffle">
-                    <ul id="grid" class="row">
-                        <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6 columns"
-                            data-groups='["classic"]' data-date-created="2018"
-                            data-title="${book.title}" data-color="#fcc278">
-                            <div class="bk-img">
-                                <div class="bk-wrapper">
-                                    <div class="bk-book bk-bookdefault">
-                                        <div class="bk-front">
-                                            <div class="bk-cover"
-                                                 th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover;'"></div>
+                <section id="book_list">
+                    <div class="grid-shuffle">
+                        <ul id="grid" class="row">
+                            <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6 columns"
+                                data-groups='["classic"]' data-date-created="2018"
+                                data-title="${book.title}" data-color="#fcc278">
+                                <div class="bk-img">
+                                    <div class="bk-wrapper">
+                                        <div class="bk-book bk-bookdefault">
+                                            <div class="bk-front">
+                                                <div class="bk-cover"
+                                                     th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover;'"></div>
 
+                                            </div>
+                                            <div class="bk-back"></div>
+                                            <div class="bk-left"
+                                                 th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover; background-position: 0% 30%;'"></div>
                                         </div>
-                                        <div class="bk-back"></div>
-                                        <div class="bk-left"
-                                             th:style="'background-image: url(' + ${book.imageUrl} + '); background-size: cover; background-position: 0% 30%;'"></div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="item-details">
-                                <h3 class="book-item_title" th:text="${book.title}"></h3>
-                                <p class="author">by <span th:text="${book.author}"></span> &bull; <span
-                                        th:text="${book.publishedYear}">
-                                    </span> &bull; <span th:text="${book.copies} + ' copies available'"></span></p>
-                                <p th:text="${book.synopsis}"></p>
-                            </div>
+                                <div class="item-details">
+                                    <h3 class="book-item_title" th:text="${book.title}"></h3>
+                                    <p class="author">by <span th:text="${book.author}"></span> &bull; <span
+                                            th:text="${book.publishedYear}">
+                                        </span> &bull; <span th:text="${book.copies} + ' copies available'"></span></p>
+                                    <p th:text="${book.synopsis}"></p>
+                                </div>
 
-                        </li>
-                    </ul>
-                </div>
-            </section>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 </div>
