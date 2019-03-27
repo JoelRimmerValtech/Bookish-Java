@@ -28,7 +28,7 @@
         </thead>
         <tbody>
         <tr th:each="member : ${members.memberList}">
-            <td class="id" th:text="${member.memberId}"></td>
+            <td class="id" ><a th:text="${member.memberId}" th:href="@{/staff/checkin(id=${member.memberId})}"></a></td>
             <td class="sname" th:text="${member.surname}"></td>
             <td class="fname" th:text="${member.forename}"></td>
             <td class="librarian" th:text="${member.librarian}"></td>

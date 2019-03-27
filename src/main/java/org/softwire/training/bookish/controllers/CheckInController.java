@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -29,9 +30,9 @@ public class CheckInController {
     }
 
     @RequestMapping("")
-    ModelAndView checkIn() {
+    ModelAndView checkIn(@RequestParam(value = "id", required = false) String id) {
         CheckInModel model = new CheckInModel();
-        model.setTransactions(checkInOutService.getCheckInOut());
+        model.setTransactions(checkInOutService.getCheckInOut(id == null ? "" : id));
         model.setBooks(bookService.getBooks(""));
         model.setMembers(memberService.getMembers());
 

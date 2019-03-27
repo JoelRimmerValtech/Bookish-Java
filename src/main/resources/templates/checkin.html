@@ -4,6 +4,7 @@
 
 <head layout:fragment="head">
     <title>Manage Books Checked Out</title>
+    <link rel="stylesheet" href="/styles/checkin.css"/>
 </head>
 
 <body>
@@ -31,13 +32,13 @@
             <td class="book_id" th:text="${transaction.book.bookId}"></td>
             <td class="book_title" th:text="${transaction.book.title}"></td>
             <td class="member_id" th:text="${transaction.member.memberId}"></td>
-            <td class="member_title" th:text="${transaction.member.forename} + ${transaction.member.surname}"></td>
+            <td class="member_title" th:text="${transaction.member.forename} + ' ' + ${transaction.member.surname}"></td>
             <td class="due" th:text="${transaction.dateDue}"></td>
             <td class="edit">Edit</td>
             <td class="trash">Delete</td>
         </tr>
-        <tr id="add-book-button">
-            <td class="new-row" colspan="9">Add New Transaction</td>
+        <tr id="add-transaction-button">
+            <td class="new-row" colspan="8">Add New Transaction</td>
         </tr>
         </tbody>
     </table>
@@ -85,13 +86,7 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
         var isEditing = false,
-            tempTitleValue = "",
-            tempAuthorValue = "",
-            tempCopiesValue = 0,
-            tempImgUrlValue = "",
-            tempYearValue = 0,
-            tempSynopsisValue = "";
-
+            tempDueVal = 0;
 
         // Handles live/dynamic element events, i.e. for newly created edit buttons
         $(document).on('click', '.edit', function () {
@@ -99,23 +94,12 @@
             var parentRow = $(this).closest('tr'),
                 tableBody = parentRow.closest('tbody'),
                 tdId = parentRow.children('td.id'),
-                tdTitle = parentRow.children('td.title'),
-                tdAuthor = parentRow.children('td.author'),
-                tdCopies = parentRow.children('td.copies'),
-                tdImgUrl = parentRow.children('td.imgUrl'),
-                tdYear = parentRow.children('td.publishedYear'),
-                tdSynopsis = parentRow.children('td.synopsis');
-
+                tdDue = parentRow.children('td.due');
 
             if (isEditing) {
                 //On Save Click
                 //NEW INPUT VARIABLES
-                var titleInput = tableBody.find('input[name="title"]'),
-                    authorInput = tableBody.find('input[name="author"]'),
-                    copiesInput = tableBody.find('input[name="copies"]'),
-                    imgUrlInput = tableBody.find('input[name="imgUrl"]'),
-                    yearInput = tableBody.find('input[name="year"]'),
-                    synopsisInput = tableBody.find('textarea[name="synopsis"]'),
+                var dueInput = tableBody.find('input[name="due"]'),
                     tdEditCell = parentRow.children('td.edit');
 
 
@@ -124,54 +108,29 @@
                     // Load New Values from Input Fields
 
                     var idVal = parseInt(tdId.text());
-                    titleValue = titleInput.val();
-                    authorValue = authorInput.val();
-                    copiesValue = copiesInput.val();
-                    imgUrlValue = imgUrlInput.val();
-                    yearValue = yearInput.val();
-                    synopsisValue = synopsisInput.val();
+                    dueVal = dueInput.val();
 
-                    titleInput.empty();
-                    authorInput.empty();
-                    copiesInput.empty();
-                    imgUrlInput.empty();
-                    yearInput.empty();
-                    synopsisInput.empty();
+                    dueInput.empty();
 
                     $.ajax({
-                        url: '/staff/books/edit',
+                        url: '/staff/checkin/edit',
                         type: 'POST',
                         success: function () {
                             window.location.reload();
                         },
                         data: JSON.stringify({
-                            bookId: idVal,
-                            title: titleValue,
-                            author: authorValue,
-                            copies: parseInt(copiesValue),
-                            imageUrl: imgUrlValue,
-                            publishedYear: parseInt(yearValue),
-                            synopsis: synopsisValue,
+                            transactionId: idVal,
+                            dateDue: dueVal,
                         }),
                         contentType: 'application/json; charset=utf-8'
                     });
                 } else {
 
                     // When two different edit buttons are clicked, reset input fields
-                    titleInput.empty();
-                    authorInput.empty();
-                    copiesInput.empty();
-                    imgUrlInput.empty();
-                    yearInput.empty();
-                    synopsisInput.empty();
+                    dueInput.empty();
 
                     // Restore values
-                    titleInput.html(tempTitleValue);
-                    authorInput.html(tempAuthorValue);
-                    copiesInput.html(tempCopiesValue);
-                    imgUrlInput.html(tempImgUrlValue);
-                    yearInput.html(tempYearValue);
-                    synopsisInput.html(tempSynopsisValue);
+                    dueInput.html(tempDueVal);
                 }
 
                 // Display static row
@@ -183,37 +142,17 @@
                 $(this).html('Save');
 
                 //CELL CONTENT VARIABLES
-                var idVal = parseInt(tdId.text()),
-                    titleValue = tdAuthor.html(),
-                    authorValue = tdTitle.html(),
-                    copiesValue = tdCopies.html(),
-                    imgUrlValue = tdImgUrl.html(),
-                    yearValue = tdYear.html(),
-                    synopsisValue = tdSynopsis.html();
+                var idVal = parseInt(tdId.text());
+                var dueVal = tdDue.html();
 
                 // Save current html values for canceling an edit
-                tempTitleValue = titleValue;
-                tempAuthorValue = authorValue;
-                tempCopiesValue = copiesValue;
-                tempImgUrlValue = imgUrlValue;
-                tempYearValue = yearValue;
-                tempSynopsisValue = synopsisValue;
+                tempDueVal = dueVal;
 
                 // Remove existing html values
-                tdTitle.empty();
-                tdAuthor.empty();
-                tdCopies.empty();
-                tdImgUrl.empty();
-                tdYear.empty();
-                tdSynopsis.empty();
+                tdDue.empty();
 
                 // Create input forms
-                tdTitle.html(`<input type="text" name="title" value="${titleValue}">`);
-                tdAuthor.html(`<input type="text" name="author" value="${authorValue}">`);
-                tdCopies.html(`<input type="number" name="copies" value="${copiesValue}">`);
-                tdImgUrl.html(`<input type="text" name="imgUrl" value="${imgUrlValue}">`);
-                tdYear.html(`<input type="number" name="year" value="${yearValue}">`);
-                tdSynopsis.html(`<textarea name="synopsis">${synopsisValue}</textarea>`);
+                tdDue.html(`<input type="date" name="due" value="${dueVal}">`);
             }
         });
 
@@ -241,21 +180,21 @@
 
             // Remove selected row from table
             $.ajax({
-                url: '/staff/books/delete',
+                url: '/staff/checkin/delete',
                 type: 'POST',
                 success: function () {
                     window.location.reload();
                 },
                 data: JSON.stringify({
-                    bookId: parseInt(idVal)
+                    transactionId: parseInt(idVal)
                 }),
                 contentType: 'application/json; charset=utf-8'
             });
 
         });
 
-        $('#add-book-button').click(function () {
-            $('#add-book-form').get(0).scrollIntoView();
+        $('#add-transaction-button').click(function () {
+            $('#add-transaction-form').get(0).scrollIntoView();
         });
     </script>
 

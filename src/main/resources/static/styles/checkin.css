@@ -1,0 +1,82 @@
+body {
+}
+
+body input[type="text"] {
+  padding-left: 0.5rem;
+  width: 100%;
+  line-height: 1.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #f5f5f5;
+  border: 0px;
+}
+
+
+.content {
+  margin: 80px auto;
+  max-width: 1200px;
+}
+
+table {
+  margin: 0 auto;
+  width: 800px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+table thead th {
+  text-align: center;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  line-height: 2rem;
+  font-size: 1.25rem;
+}
+
+table tbody td {
+  text-align: center;
+  border: 1px solid black;
+  line-height: 1.8rem;
+}
+
+.edit, .trash, .new-row {
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.4s ease;
+  transition: color 0.4s ease;
+}
+
+.edit:hover, .trash:hover, .new-row:hover {
+  cursor: pointer;
+  background-color: #2a2a2a;
+  color: #ddd;
+}
+.membersheading {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  width: 800px;
+}
+
+
+.pagebreakimage {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 6px;
+  margin-bottom: 6px;
+  width: 100vw;
+  background-image: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
+  background-size: cover;
+  height: 30px;
+  background-position: 0% 35%;
+}
+
+.addtransactionbutton {
+  margin-bottom: 15px;
+}
+
+.textmargin {
+  margin-top: 5px;
+}
