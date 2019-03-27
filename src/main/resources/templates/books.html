@@ -21,7 +21,7 @@
                         <input type="text" placeholder="Search by title or author">
                         <button type="submit">Search</button>
                     </div>
-                    <div class="small-12 medium-3 columns sortoptionscontainer">
+                    <div class="small-12 medium-3 sortoptionscontainer">
                         <select class="sort-options" onchange="reloadWithQueryStringVars({orderby: value})">
                             <option value="" disabled selected>Sort by</option>
                             <option value="author">Author</option>
@@ -34,8 +34,8 @@
                 <section id="book_list">
                     <div class="grid-shuffle">
                         <ul id="grid" class="row">
-                            <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6 columns"
-                                data-groups='["classic"]' data-date-created="2018"
+                            <li th:each="book : ${books.bookList}" class="book-item small-12 medium-6"
+                                data-date-created="${book.publishedYear}"
                                 data-title="${book.title}" data-color="#fcc278">
                                 <div class="bk-img">
                                     <div class="bk-wrapper">
