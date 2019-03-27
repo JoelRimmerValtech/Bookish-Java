@@ -1,32 +1,23 @@
 package org.softwire.training.bookish.models.database;
 
 import org.jdbi.v3.core.mapper.Nested;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class BooksTakenOut {
 
     private int transactionId;
-    private int bookId;
-    private int memberId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDue;
-
-    private Member member;
-    private Book book;
+    private Member member = new Member();
+    private Book book = new Book();
 
     public BooksTakenOut() {
     }
 
     public int getTransactionId() {
         return transactionId;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public int getMemberId() {
-        return memberId;
     }
 
     public Date getDateDue() {
@@ -45,14 +36,6 @@ public class BooksTakenOut {
 
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
     }
 
     public void setDateDue(Date dateDue) {
