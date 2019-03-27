@@ -8,15 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/staff")
 public class StaffController {
 
-
     @RequestMapping("")
     ModelAndView staffOverview() {
         return new ModelAndView("staffOverview");
     }
-
-    @RequestMapping("/checkbook")
-    ModelAndView checkOutIn() {
-        return new ModelAndView("checkin");
-    }
-
 }

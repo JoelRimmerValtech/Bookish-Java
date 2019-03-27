@@ -1,8 +1,6 @@
 package org.softwire.training.bookish.controllers;
 
-import org.softwire.training.bookish.models.database.Book;
 import org.softwire.training.bookish.models.database.Member;
-import org.softwire.training.bookish.models.page.BookModel;
 import org.softwire.training.bookish.models.page.StaffPageMemberModel;
 import org.softwire.training.bookish.services.BookService;
 import org.softwire.training.bookish.services.MemberService;
@@ -18,12 +16,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/staff/members")
-public class MemberController {
+public class StaffMemberController {
 
     private final MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService memberService, BookService bookService) {
+    public StaffMemberController(MemberService memberService, BookService bookService) {
         this.memberService = memberService;
     }
 
