@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @Controller
@@ -28,9 +29,10 @@ public class BooksController {
     }
 
     @RequestMapping("")
-    ModelAndView books(@RequestParam(value = "orderby", required = false) String orderBy) {
+    ModelAndView books(@RequestParam(value = "orderby", required = false) String orderBy,
+                       @RequestParam(value = "usersearch", required = false) String query) {
 
-        List<Book> books = bookService.getBooks(orderBy == null ? "" : orderBy);
+        List<Book> books = bookService.getBooks(orderBy == null ? "" : orderBy, query == null? "" : query);
 
         BookModel bookModel = new BookModel();
         bookModel.setBookList(books);

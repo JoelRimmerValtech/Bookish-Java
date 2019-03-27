@@ -26,7 +26,7 @@ public class StaffBooksController {
 
     @RequestMapping("")
     ModelAndView books() {
-        List<Book> bookList = bookService.getBooks("");
+        List<Book> bookList = bookService.getBooks("","");
         BookModel bookModel = new BookModel();
         bookModel.setBookList(bookList);
         return new ModelAndView("staffBooks", "books", bookModel);

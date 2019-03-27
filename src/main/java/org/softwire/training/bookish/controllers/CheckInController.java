@@ -33,7 +33,7 @@ public class CheckInController {
     ModelAndView checkIn(@RequestParam(value = "id", required = false) String id) {
         CheckInModel model = new CheckInModel();
         model.setTransactions(checkInOutService.getCheckInOut(id == null ? "" : id));
-        model.setBooks(bookService.getBooks(""));
+        model.setBooks(bookService.getBooks("",""));
         model.setMembers(memberService.getMembers());
 
         return new ModelAndView("checkin", "model", model);

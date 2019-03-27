@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class BookService extends DatabaseService {
 
-    public List<Book> getBooks(String orderBy) {
+    public List<Book> getBooks(String orderBy, String query) {
         String sql;
 
         switch (orderBy) {
@@ -20,9 +20,20 @@ public class BookService extends DatabaseService {
             case "alpha":
                 sql = "SELECT * FROM library_books ORDER BY title ASC";
                 break;
+            case "year":
+                sql = "SELECt * FROM library_books ORDER BY published_year ASC";
+                break;
             default:
                 sql = "SELECT * FROM library_books";
                 break;
+        }
+
+        switch (query) {
+            case "":
+                break;
+            default:
+                sql = "SELECT * FROM library_books WHERE title LIKE '%" + query +
+                        "%' OR author LIKE '%" + query + "%'";
         }
 
         String finalSql = sql;
