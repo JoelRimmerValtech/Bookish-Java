@@ -87,4 +87,10 @@
 .synopsis-par {
    height:120px;
    overflow:auto;
+   -ms-overflow-style: none;
+   overflow: -moz-scrollbars-none;
+}
+
+.synopsis-par::-webkit-scrollbar {
+    width: 0 !important;
 }

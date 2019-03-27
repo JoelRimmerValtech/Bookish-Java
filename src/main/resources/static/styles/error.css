@@ -617,6 +617,10 @@ div.offline-content-suggestion {
   display: none;
 }
 
+body{
+    overflow: hidden;
+}
+
 /* Don't allow overflow when in a subframe. */
 html[subframe] body {
   overflow: hidden;
