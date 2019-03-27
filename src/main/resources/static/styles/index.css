@@ -199,7 +199,6 @@ a.button:hover, a.button:focus {
   font-size: 15px;
   line-height: 1.4;
   -webkit-line-clamp: 3;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
