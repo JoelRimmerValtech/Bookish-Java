@@ -85,8 +85,7 @@
                 <div class="form-group">
                     <label class="form-label" for="synopsis">Synopsis</label>
                     <textarea class="form-control" id="synopsis" name="synopsis" placeholder="Synopsis"
-                              tabindex="3" required>
-                    </textarea>
+                              tabindex="3" required></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-start-order addmemberbutton">Add Book</button>
@@ -138,6 +137,7 @@
                 if ($(this).is(tdEditCell)) {
                     // Load New Values from Input Fields
 
+                    var idVal = parseInt(tdId.text());
                     titleValue = titleInput.val();
                     authorValue = authorInput.val();
                     copiesValue = copiesInput.val();

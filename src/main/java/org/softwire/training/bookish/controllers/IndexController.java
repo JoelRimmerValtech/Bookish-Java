@@ -19,9 +19,9 @@ public class IndexController {
 
     @RequestMapping("/")
     ModelAndView home() {
-
         return new ModelAndView("index");
     }
+
 
 
 }
