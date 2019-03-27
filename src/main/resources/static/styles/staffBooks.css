@@ -26,7 +26,13 @@ table {
   margin: 0 auto;
   width: 800px;
   background-color: white;
+  table-layout: fixed;
   border: 1px solid black;
+}
+
+.synopsis{
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 table thead th {
@@ -77,7 +83,7 @@ h2 {
   width: 100vw;
   background-image: url(https://amp.businessinsider.com/images/548b5430eab8eac00627d6fe-2560-1915.jpg);
   background-size: cover;
-  height: 3000px;
+  height: 30px;
   background-position: 0% 34%;
 }
 
