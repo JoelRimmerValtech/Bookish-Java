@@ -81,3 +81,9 @@
     font-family: 'Goudy Bookletter 1911', serif;
     box-sizing: border-box;
 }
+
+.sort-options {
+    position: relative;
+    top: 60px;
+    left: 202px;
+}
